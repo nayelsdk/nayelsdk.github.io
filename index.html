@@ -1,68 +1,176 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- Métadonnées : encodage, affichage mobile, titre de l'onglet -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio de Nayel Benabdesadok — projets et contact">
-  <title>Nayel Benabdesadok</title>
+  <meta name="description" content="Nayel Benabdesadok — Data & Quant. Python, analyse de données, scraping, applications web & mobile.">
+  <title>Nayel Benabdesadok — Data &amp; Quant</title>
+
+  <!-- Favicon en emoji (aucun fichier à héberger) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+
+  <!-- Polices Google (gratuites). On ne charge que les graisses utilisées → page légère. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ===== En-tête / présentation ===== -->
-  <header class="hero">
-    <p class="hello">Bonjour, je suis</p>
-    <h1>Nayel Benabdesadok</h1>
-    <p class="tagline">
-      J'aime construire des projets utiles — du scraping de données
-      aux applications web et mobiles.
-    </p>
-    <nav class="links">
-      <a href="https://github.com/nayelsdk" target="_blank" rel="noopener">GitHub</a>
-      <a href="mailto:nayelsadok@gmail.com">Me contacter</a>
-    </nav>
-  </header>
+  <!-- Halo lumineux qui suit la souris (effet « spotlight », piloté par main.js) -->
+  <div class="spotlight" aria-hidden="true"></div>
 
-  <!-- ===== Projets ===== -->
-  <main>
-    <section class="projects">
-      <h2>Mes projets</h2>
+  <div class="wrapper">
 
-      <div class="grid">
-        <article class="card">
-          <h3>MacroCount</h3>
-          <p>
-            Un compteur de calories et de macros gratuit, façon MyFitnessPal,
-            construit avec Expo pour le web et le mobile.
-          </p>
-          <span class="tags">React Native · Expo · Local-first</span>
-        </article>
+    <!-- ===================================================================
+         PANNEAU GAUCHE — reste fixe pendant que la colonne de droite défile
+    ==================================================================== -->
+    <header class="side">
+      <div class="side-top">
+        <h1 class="name">Nayel Benabdesadok</h1>
+        <h2 class="role">Data &amp; Quant · Développeur</h2>
+        <p class="intro">
+          Je transforme la donnée en décisions — du scraping à l'analyse,
+          du web au mobile.
+        </p>
 
-        <article class="card">
-          <h3>Pokémon Card Scraping</h3>
-          <p>
-            Un outil de scraping qui collecte les prix et les données
-            de cartes Pokémon pour suivre le marché.
-          </p>
-          <span class="tags">Python · Scraping · Data</span>
-        </article>
-
-        <article class="card">
-          <h3>Et bientôt…</h3>
-          <p>
-            D'autres projets arrivent. Cette page évoluera avec eux !
-          </p>
-          <span class="tags">À suivre</span>
-        </article>
+        <!-- Navigation interne : la petite barre s'allonge sur la section active -->
+        <nav class="nav" aria-label="Navigation de la page">
+          <a href="#about" class="nav-link">
+            <span class="nav-line"></span>
+            <span class="nav-text">À propos</span>
+          </a>
+          <a href="#projects" class="nav-link">
+            <span class="nav-line"></span>
+            <span class="nav-text">Projets</span>
+          </a>
+          <a href="#contact" class="nav-link">
+            <span class="nav-line"></span>
+            <span class="nav-text">Contact</span>
+          </a>
+        </nav>
       </div>
-    </section>
-  </main>
 
-  <!-- ===== Pied de page ===== -->
-  <footer>
-    <p>© 2026 Nayel Benabdesadok — Fait main avec HTML &amp; CSS</p>
-  </footer>
+      <!-- Liens sociaux, épinglés en bas du panneau -->
+      <ul class="socials">
+        <li>
+          <a href="https://github.com/nayelsdk" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.04-.02-2.05-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12 12 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg>
+          </a>
+        </li>
+        <li>
+          <!-- ⬇️ Remplace ce lien par ton vrai profil LinkedIn -->
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="mailto:nayelsadok@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+          </a>
+        </li>
+      </ul>
+    </header>
 
+    <!-- ===================================================================
+         COLONNE DROITE — le contenu qui défile
+    ==================================================================== -->
+    <main class="content">
+
+      <!-- ---------- 01 · À PROPOS ---------- -->
+      <section id="about" class="section reveal">
+        <h3 class="section-title"><span class="section-num">01.</span> À propos</h3>
+
+        <p>
+          Salut, moi c'est Nayel. Je m'intéresse à tout ce qui touche à la
+          <strong>donnée</strong> et aux <strong>marchés</strong> : collecter,
+          nettoyer, analyser, puis construire des outils concrets par-dessus.
+          J'aime autant écrire un scraper Python robuste qu'une appli mobile
+          soignée.
+        </p>
+        <p>
+          Aujourd'hui je me forme aux méthodes <strong>quantitatives</strong> et
+          au développement, avec l'objectif de bâtir des projets qui servent
+          vraiment. Voici quelques technologies avec lesquelles je travaille :
+        </p>
+
+        <!-- Grille de compétences : labels en monospace, puce en accent -->
+        <ul class="skills">
+          <li>Python</li>
+          <li>Pandas / NumPy</li>
+          <li>SQL</li>
+          <li>Web scraping</li>
+          <li>React Native · Expo</li>
+          <li>Git &amp; GitHub</li>
+        </ul>
+      </section>
+
+      <!-- ---------- 02 · PROJETS ---------- -->
+      <section id="projects" class="section reveal">
+        <h3 class="section-title"><span class="section-num">02.</span> Projets</h3>
+
+        <a class="card" href="https://github.com/nayelsdk" target="_blank" rel="noopener">
+          <p class="card-label">Application · Local-first</p>
+          <h4 class="card-title">MacroCount <span class="arrow">↗</span></h4>
+          <p class="card-desc">
+            Un compteur de calories et de macros gratuit, façon MyFitnessPal,
+            construit avec Expo pour le web et le mobile. Tout fonctionne en
+            local, sans abonnement.
+          </p>
+          <ul class="tags">
+            <li>React Native</li>
+            <li>Expo</li>
+            <li>Local-first</li>
+          </ul>
+        </a>
+
+        <a class="card" href="https://github.com/nayelsdk" target="_blank" rel="noopener">
+          <p class="card-label">Data · Scraping</p>
+          <h4 class="card-title">Pokémon Card Scraping <span class="arrow">↗</span></h4>
+          <p class="card-desc">
+            Un outil de scraping qui collecte les prix et les données de cartes
+            Pokémon pour suivre l'évolution du marché — pipeline de récupération,
+            nettoyage et stockage des données.
+          </p>
+          <ul class="tags">
+            <li>Python</li>
+            <li>Scraping</li>
+            <li>Data</li>
+          </ul>
+        </a>
+
+        <div class="card card--soon">
+          <p class="card-label">À venir</p>
+          <h4 class="card-title">Et la suite…</h4>
+          <p class="card-desc">
+            D'autres projets arrivent — analyse quantitative, backtests, outils
+            de marché. Cette page évoluera avec eux.
+          </p>
+        </div>
+      </section>
+
+      <!-- ---------- 03 · CONTACT ---------- -->
+      <section id="contact" class="section reveal">
+        <p class="eyebrow">03. Et maintenant ?</p>
+        <h3 class="contact-title">Discutons</h3>
+        <p class="contact-text">
+          Une opportunité, une question, ou juste envie d'échanger sur la data
+          et les marchés ? Ma boîte mail est toujours ouverte.
+        </p>
+        <a class="btn" href="mailto:nayelsadok@gmail.com">Me contacter</a>
+      </section>
+
+      <footer class="footer">
+        <p>
+          Conçu &amp; codé par Nayel Benabdesadok · <span id="year"></span><br>
+          Fait main avec HTML, CSS &amp; un peu de JavaScript.
+        </p>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="main.js"></script>
 </body>
 </html>
