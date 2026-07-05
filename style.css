@@ -1,303 +1,356 @@
 /* =====================================================================
-   VARIABLES — toute la palette et la typo vivent ici.
-   Change une valeur → tout le site se met à jour. (idée de darpanjain.com)
+   THÈMES — deux palettes en harmonie, pilotées par [data-theme].
+   Sombre = bleu-nuit + menthe (style Wanqi Zhu / Jane Street)
+   Clair  = blanc + teal (lisible), pour le bouton clair/sombre
    ===================================================================== */
-:root {
-  /* Couleurs */
-  --bg:      #0A0E14;                    /* fond presque-noir, légèrement bleuté */
-  --surface: #141A22;                    /* fond des cartes, un cran plus clair */
-  --text:    #E4E9F0;                    /* blanc cassé (jamais #fff pur) */
-  --muted:   #8A94A6;                    /* texte secondaire, gris-bleu */
-  --accent:  #3DD7A0;                    /* LA couleur d'accent : vert « data » */
-  --amber:   #E0A44C;                    /* accent chaud, réservé à de rares mots */
-  --border:  rgba(228, 233, 240, 0.08);  /* bordure quasi invisible */
-
-  /* Typographies */
-  --font-display: "Space Grotesk", sans-serif;  /* titres */
-  --font-body:    "Inter", sans-serif;           /* texte courant */
-  --font-mono:    "JetBrains Mono", "SF Mono", monospace; /* chiffres & labels */
-
-  /* Animation partagée (une seule courbe pour tout le site) */
-  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+:root,
+[data-theme="dark"] {
+  --bg:        #0A192F;   /* bleu-nuit profond */
+  --surface:   #112240;   /* cartes */
+  --surface-2: #1D2D50;   /* survol */
+  --heading:   #E6F1FF;   /* titres, presque blanc */
+  --text:      #C3D0E8;   /* texte courant, bleu-ardoise clair */
+  --muted:     #8892B0;   /* texte secondaire */
+  --accent:    #64FFDA;   /* menthe : LA couleur d'accent */
+  --accent-soft: rgba(100, 255, 218, 0.1);
+  --on-accent: #0A192F;   /* texte posé sur la couleur d'accent */
+  --border:    rgba(136, 146, 176, 0.2);
+  --nav-bg:    rgba(10, 25, 47, 0.85);
 }
 
-/* ===== Réglages de base ===== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+[data-theme="light"] {
+  --bg:        #F7F9FC;
+  --surface:   #FFFFFF;
+  --surface-2: #EEF2F8;
+  --heading:   #0B1B34;
+  --text:      #35435C;
+  --muted:     #6A7690;
+  --accent:    #0E9F8E;   /* teal plus foncé, lisible sur blanc */
+  --accent-soft: rgba(14, 159, 142, 0.1);
+  --on-accent: #FFFFFF;
+  --border:    rgba(11, 27, 52, 0.12);
+  --nav-bg:    rgba(247, 249, 252, 0.85);
+}
 
+/* Variables communes */
+:root {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body:    "Inter", sans-serif;
+  --font-mono:    "JetBrains Mono", "SF Mono", monospace;
+  --ease:         cubic-bezier(0.4, 0, 0.2, 1);
+  --maxw:         780px;
+}
+
+/* ===== Base ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-body);
   background: var(--bg);
-  color: var(--muted);
-  line-height: 1.6;
+  color: var(--text);
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* transition douce lors du changement de thème */
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
 }
 
-/* Halo lumineux qui suit la souris (positionné par main.js) */
-.spotlight {
+/* Halo d'ambiance en haut de page */
+.bg-glow {
   position: fixed;
-  inset: 0;
-  pointer-events: none;      /* n'intercepte jamais les clics */
+  top: -200px; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 600px;
+  background: radial-gradient(circle, var(--accent-soft), transparent 60%);
+  pointer-events: none;
   z-index: 0;
-  transition: background 0.15s var(--ease);
-  background: radial-gradient(
-    600px circle at var(--mx, 50%) var(--my, 0%),
-    rgba(61, 215, 160, 0.06),
-    transparent 40%
-  );
+  opacity: 0.7;
 }
 
-/* ===== Structure en 2 colonnes ===== */
-.wrapper {
-  position: relative;
-  z-index: 1;
-  max-width: 1152px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-}
+strong { color: var(--heading); font-weight: 600; }
 
-/* -- Panneau gauche : reste fixe au scroll (sur grand écran) -- */
-.side {
+/* ===================== NAVIGATION ===================== */
+.topnav {
   position: sticky;
   top: 0;
-  height: 100vh;
+  z-index: 10;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
-  padding: 100px 0;
+  gap: 16px;
+  padding: 14px 24px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);          /* effet verre dépoli */
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
 }
 
+.brand {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 4px 10px;
+}
+
+.topnav-links {
+  display: flex;
+  gap: 24px;
+  margin-left: auto;
+}
+
+.topnav-links a {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+.topnav-links a:hover,
+.topnav-links a.active { color: var(--accent); }
+
+/* Bouton clair / sombre */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+/* On n'affiche que l'icône correspondant au thème */
+[data-theme="dark"] .icon-moon { display: none; }
+[data-theme="light"] .icon-sun { display: none; }
+
+/* ===================== CONTENEUR ===================== */
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 72px 24px 40px;
+}
+
+/* ===================== PROFIL ===================== */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 28px;
+}
+
+.avatar {
+  position: relative;
+  width: 132px; height: 132px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--accent);
+}
+.avatar img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+/* Monogramme affiché tant qu'aucune photo n'est fournie */
+.avatar-monogram {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 2.8rem; font-weight: 600;
+  color: var(--accent);
+  background: var(--surface);
+}
+
+.hello {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
 .name {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
   font-weight: 700;
-  color: var(--text);
+  color: var(--heading);
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
-
-.role {
+.tagline {
   font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 500;
+  font-size: 1.05rem;
   color: var(--text);
-  margin-top: 12px;
+  margin-top: 8px;
 }
 
-.intro {
-  margin-top: 16px;
-  max-width: 320px;
-  font-size: 0.98rem;
-}
-
-/* ===== Navigation interne avec barre qui s'allonge ===== */
-.nav {
-  margin-top: 48px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.nav-link {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  text-decoration: none;
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 4px 0;
-  width: max-content;
-}
-
-/* La petite barre à gauche du texte de nav */
-.nav-line {
-  display: block;
-  height: 1px;
-  width: 32px;
-  background: var(--muted);
-  transition: width 0.25s var(--ease), background 0.25s var(--ease);
-}
-
-/* Au survol OU quand la section est active : barre longue + accent */
-.nav-link:hover,
-.nav-link.active { color: var(--text); }
-
-.nav-link:hover .nav-line,
-.nav-link.active .nav-line {
-  width: 64px;
-  background: var(--accent);
-}
-
-/* ===== Liens sociaux ===== */
 .socials {
   display: flex;
-  gap: 20px;
+  gap: 18px;
   list-style: none;
+  margin-top: 16px;
 }
-
 .socials a {
   color: var(--muted);
   display: inline-flex;
   transition: color 0.2s var(--ease), transform 0.2s var(--ease);
 }
-
 .socials a:hover { color: var(--accent); transform: translateY(-3px); }
 
-/* ===== Colonne de droite ===== */
-.content { padding: 100px 0; }
+.bio {
+  font-size: 1.05rem;
+  margin-bottom: 72px;
+}
 
-.section { margin-bottom: 120px; scroll-margin-top: 80px; }
+/* ===================== SECTIONS ===================== */
+.section { margin-bottom: 72px; scroll-margin-top: 80px; }
 
-/* Titre de section : « 01. » en mono + trait qui prolonge la ligne */
 .section-title {
   display: flex;
   align-items: center;
   gap: 12px;
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  color: var(--text);
+  color: var(--heading);
   margin-bottom: 28px;
 }
-
 .section-num {
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 400;
   color: var(--accent);
 }
-
-/* Le trait horizontal après le titre */
 .section-title::after {
   content: "";
   flex: 1;
   height: 1px;
   background: var(--border);
-  max-width: 240px;
 }
 
-.section p { margin-bottom: 16px; }
-.section strong { color: var(--text); font-weight: 500; }
+/* ===================== TIMELINE (Expérience / Éducation) ===================== */
+.timeline { display: flex; flex-direction: column; gap: 8px; }
 
-/* ===== Grille de compétences ===== */
-.skills {
-  list-style: none;
-  margin-top: 20px;
+.entry {
   display: grid;
-  grid-template-columns: repeat(2, minmax(140px, 1fr));
-  gap: 8px 16px;
+  grid-template-columns: 120px 1fr;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.entry:hover {
+  background: var(--surface);
+  border-color: var(--border);
 }
 
-.skills li {
-  position: relative;
-  padding-left: 20px;
+.entry-date {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   color: var(--muted);
+  padding-top: 3px;
 }
-
-/* Puce « ▹ » en couleur d'accent */
-.skills li::before {
-  content: "▹";
-  position: absolute;
-  left: 0;
-  color: var(--accent);
+.entry-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--heading);
+  margin-bottom: 8px;
 }
+.entry-title .at { color: var(--accent); font-weight: 500; }
+.entry-body p { font-size: 0.95rem; }
 
-/* ===== Cartes projets ===== */
+/* ===================== CARTES PROJETS ===================== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
 .card {
   display: block;
   text-decoration: none;
-  color: var(--muted);            /* sinon le texte hérite du bleu de lien */
+  color: var(--text);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 16px;
+  padding: 22px;
   transition: transform 0.2s var(--ease), border-color 0.2s var(--ease);
 }
-
-/* La carte se soulève et sa bordure s'allume en vert au survol */
-.card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent);
-}
+.card:hover { transform: translateY(-4px); border-color: var(--accent); }
 
 .card-label {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--accent);
-  margin-bottom: 10px !important;
+  margin-bottom: 10px;
 }
-
 .card-title {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: var(--text);
+  color: var(--heading);
   margin-bottom: 8px;
 }
-
-/* La flèche « ↗ » glisse en diagonale au survol de la carte */
-.arrow {
-  display: inline-block;
-  transition: transform 0.2s var(--ease);
-  color: var(--accent);
-}
+.arrow { display: inline-block; color: var(--accent); transition: transform 0.2s var(--ease); }
 .card:hover .arrow { transform: translate(3px, -3px); }
+.card-desc { font-size: 0.9rem; margin-bottom: 14px; }
 
-.card-desc { font-size: 0.92rem; }
+.card--soon { opacity: 0.65; }
+.card--soon:hover { transform: none; border-color: var(--border); }
 
-.tags {
+/* ===================== TAGS & PILLS ===================== */
+.tags, .pills {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 14px;
 }
-
 .tags li {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: var(--accent);
-  background: rgba(61, 215, 160, 0.08);
+  background: var(--accent-soft);
   padding: 4px 10px;
   border-radius: 999px;
 }
+.pills { margin-top: 16px; }
+.pills li {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 999px;
+}
 
-/* La carte « à venir » ne réagit pas au survol */
-.card--soon { opacity: 0.7; }
-.card--soon:hover { transform: none; border-color: var(--border); }
-
-/* ===== Section contact ===== */
+/* ===================== CONTACT ===================== */
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--accent);
-  margin-bottom: 16px !important;
+  margin-bottom: 14px;
 }
-
 .contact-title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
   font-weight: 700;
-  color: var(--text);
-  margin-bottom: 16px;
+  color: var(--heading);
+  margin-bottom: 14px;
 }
+.contact-text { max-width: 460px; margin: 0 auto 30px; }
 
-.contact-text { max-width: 480px; margin-bottom: 32px; }
-
-/* Bouton contour qui se remplit légèrement au survol */
 .btn {
   display: inline-block;
   font-family: var(--font-mono);
@@ -309,17 +362,22 @@ body {
   padding: 14px 28px;
   transition: background 0.2s var(--ease);
 }
-.btn:hover { background: rgba(61, 215, 160, 0.1); }
+.btn:hover { background: var(--accent-soft); }
 
-/* ===== Pied de page ===== */
+/* Section contact centrée */
+#contact { text-align: center; }
+
+/* ===================== PIED DE PAGE ===================== */
 .footer {
+  text-align: center;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--muted);
-  line-height: 1.8;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
 }
 
-/* ===== Apparition au scroll (activée par main.js) ===== */
+/* ===================== APPARITION AU SCROLL ===================== */
 .reveal {
   opacity: 0;
   transform: translateY(24px);
@@ -327,27 +385,16 @@ body {
 }
 .reveal.in-view { opacity: 1; transform: none; }
 
-/* =====================================================================
-   RESPONSIVE — sur mobile/tablette, tout passe en une seule colonne
-   ===================================================================== */
-@media (max-width: 900px) {
-  .wrapper { grid-template-columns: 1fr; gap: 0; }
-
-  /* Le panneau gauche n'est plus fixe, il se place en haut */
-  .side {
-    position: relative;
-    height: auto;
-    padding: 80px 0 40px;
-  }
-
-  .nav { display: none; }     /* on masque la nav interne sur petit écran */
-  .content { padding: 20px 0 60px; }
-  .section { margin-bottom: 80px; }
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 640px) {
+  .topnav-links { display: none; }      /* sur mobile : on garde le logo + le toggle */
+  .profile { flex-direction: column; text-align: center; gap: 20px; }
+  .socials { justify-content: center; }
+  .entry { grid-template-columns: 1fr; gap: 6px; }
+  .entry-date { padding-top: 0; }
 }
 
-/* =====================================================================
-   ACCESSIBILITÉ — si l'utilisateur limite les animations, on les coupe
-   ===================================================================== */
+/* ===================== ANIMATIONS RÉDUITES ===================== */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
   html { scroll-behavior: auto; }

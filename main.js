@@ -1,24 +1,35 @@
 // =====================================================================
-//  Petit script pour les touches interactives de la page.
-//  Tout est « progressif » : si le JS ne charge pas, le site reste lisible.
+//  Interactions de la page. Tout reste lisible même sans JavaScript.
 // =====================================================================
 
-// L'utilisateur préfère-t-il moins d'animations ? (réglage système)
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // ---------------------------------------------------------------------
-// 1) Année automatique dans le pied de page
+// 1) Bouton clair / sombre
+//    (le thème initial est déjà posé par le petit script dans <head>)
+// ---------------------------------------------------------------------
+const toggle = document.getElementById("themeToggle");
+if (toggle) {
+  toggle.addEventListener("click", () => {
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+}
+
+// ---------------------------------------------------------------------
+// 2) Année automatique dans le pied de page
 // ---------------------------------------------------------------------
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // ---------------------------------------------------------------------
-// 2) Apparition des sections au défilement (fade + montée)
+// 3) Apparition des sections au défilement
 // ---------------------------------------------------------------------
 const revealEls = document.querySelectorAll(".reveal");
 
 if (reduceMotion) {
-  // Pas d'animation : on affiche tout directement
   revealEls.forEach((el) => el.classList.add("in-view"));
 } else {
   const revealObserver = new IntersectionObserver(
@@ -26,46 +37,32 @@ if (reduceMotion) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("in-view");
-          revealObserver.unobserve(entry.target); // une seule fois suffit
+          revealObserver.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.15 }
+    { threshold: 0.12 }
   );
   revealEls.forEach((el) => revealObserver.observe(el));
 }
 
 // ---------------------------------------------------------------------
-// 3) Navigation « scroll-spy » : surligne le lien de la section visible
+// 4) Lien de nav surligné selon la section visible (scroll-spy)
 // ---------------------------------------------------------------------
-const sections = document.querySelectorAll("section[id]");
-const navLinks = document.querySelectorAll(".nav-link");
+const sections = document.querySelectorAll("section[id], header[id]");
+const navLinks = document.querySelectorAll(".topnav-links a");
 
 const spyObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const id = entry.target.getAttribute("id");
-        navLinks.forEach((link) => {
-          link.classList.toggle(
-            "active",
-            link.getAttribute("href") === "#" + id
-          );
-        });
+        navLinks.forEach((link) =>
+          link.classList.toggle("active", link.getAttribute("href") === "#" + id)
+        );
       }
     });
   },
-  { rootMargin: "-40% 0px -55% 0px" } // « active » quand la section est au milieu
+  { rootMargin: "-45% 0px -50% 0px" }
 );
 sections.forEach((section) => spyObserver.observe(section));
-
-// ---------------------------------------------------------------------
-// 4) Halo lumineux qui suit la souris
-// ---------------------------------------------------------------------
-if (!reduceMotion) {
-  const spotlight = document.querySelector(".spotlight");
-  window.addEventListener("pointermove", (e) => {
-    spotlight.style.setProperty("--mx", e.clientX + "px");
-    spotlight.style.setProperty("--my", e.clientY + "px");
-  });
-}
