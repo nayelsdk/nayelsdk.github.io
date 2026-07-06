@@ -11,8 +11,8 @@
   --heading:   #E6F1FF;   /* titres, presque blanc */
   --text:      #C3D0E8;   /* texte courant, bleu-ardoise clair */
   --muted:     #8892B0;   /* texte secondaire */
-  --accent:    #64FFDA;   /* menthe : LA couleur d'accent */
-  --accent-soft: rgba(100, 255, 218, 0.1);
+  --accent:    #E0A44C;   /* ambre / or : LA couleur d'accent */
+  --accent-soft: rgba(224, 164, 76, 0.12);
   --on-accent: #0A192F;   /* texte posé sur la couleur d'accent */
   --border:    rgba(136, 146, 176, 0.2);
   --nav-bg:    rgba(10, 25, 47, 0.85);
@@ -25,8 +25,8 @@
   --heading:   #0B1B34;
   --text:      #35435C;
   --muted:     #6A7690;
-  --accent:    #0E9F8E;   /* teal plus foncé, lisible sur blanc */
-  --accent-soft: rgba(14, 159, 142, 0.1);
+  --accent:    #B67A12;   /* ocre / or foncé, lisible sur blanc */
+  --accent-soft: rgba(182, 122, 18, 0.1);
   --on-accent: #FFFFFF;
   --border:    rgba(11, 27, 52, 0.12);
   --nav-bg:    rgba(247, 249, 252, 0.85);
@@ -204,6 +204,7 @@ strong { color: var(--heading); font-weight: 600; }
   transition: color 0.2s var(--ease), transform 0.2s var(--ease);
 }
 .socials a:hover { color: var(--accent); transform: translateY(-3px); }
+.socials .hf { font-size: 20px; line-height: 1; } /* logo Hugging Face en emoji */
 
 .bio {
   font-size: 1.05rem;
@@ -236,38 +237,112 @@ strong { color: var(--heading); font-weight: 600; }
   background: var(--border);
 }
 
-/* ===================== TIMELINE (Expérience / Éducation) ===================== */
-.timeline { display: flex; flex-direction: column; gap: 8px; }
+/* =====================================================================
+   ENTRÉES ACCORDÉON (Expérience / Éducation)
+   « EXP 1 : Titre » toujours visible ; le détail se déroule au survol
+   (ou au clic/tap sur mobile, via la classe .open ajoutée par le JS).
+   ===================================================================== */
+.timeline { display: flex; flex-direction: column; gap: 10px; }
 
 .entry {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 20px;
-  padding: 20px;
+  border: 1px solid var(--border);
   border-radius: 10px;
-  border: 1px solid transparent;
-  transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
-}
-.entry:hover {
-  background: var(--surface);
-  border-color: var(--border);
+  overflow: hidden;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
 }
 
-.entry-date {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--muted);
-  padding-top: 3px;
+/* En-tête cliquable (bouton pleine largeur) */
+.entry-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
 }
+
+/* Badge « EXP 1 » / « EDU 1 » en monospace */
+.entry-tag {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 5px;
+  padding: 3px 8px;
+}
+
 .entry-title {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--heading);
-  margin-bottom: 8px;
 }
 .entry-title .at { color: var(--accent); font-weight: 500; }
-.entry-body p { font-size: 0.95rem; }
+
+.entry-meta {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+/* Petit logo d'école (fond blanc, tient dans les deux thèmes) */
+.entry-logo {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  padding: 5px;
+}
+.entry-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+/* Chevron qui pivote à l'ouverture */
+.chevron {
+  flex-shrink: 0;
+  color: var(--muted);
+  transition: transform 0.3s var(--ease), color 0.2s var(--ease);
+}
+
+/* Panneau déroulant : replié par défaut */
+.entry-panel {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  transition: max-height 0.35s var(--ease), opacity 0.3s var(--ease), padding 0.35s var(--ease);
+}
+.entry-panel p { font-size: 0.95rem; margin-bottom: 12px; }
+
+/* États ouverts : survol, focus clavier, ou classe .open (clic/tap) */
+.entry:hover,
+.entry:focus-within,
+.entry.open {
+  border-color: var(--accent);
+  background: var(--surface);
+}
+.entry:hover .entry-panel,
+.entry:focus-within .entry-panel,
+.entry.open .entry-panel {
+  max-height: 320px;
+  opacity: 1;
+  padding: 0 20px 18px;
+}
+.entry:hover .chevron,
+.entry:focus-within .chevron,
+.entry.open .chevron {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
 
 /* ===================== CARTES PROJETS ===================== */
 .cards {
@@ -390,8 +465,9 @@ strong { color: var(--heading); font-weight: 600; }
   .topnav-links { display: none; }      /* sur mobile : on garde le logo + le toggle */
   .profile { flex-direction: column; text-align: center; gap: 20px; }
   .socials { justify-content: center; }
-  .entry { grid-template-columns: 1fr; gap: 6px; }
-  .entry-date { padding-top: 0; }
+  /* En-tête d'entrée : on autorise le retour à la ligne sur petit écran */
+  .entry-head { flex-wrap: wrap; gap: 10px; }
+  .entry-meta { margin-left: 0; width: 100%; order: 3; }
 }
 
 /* ===================== ANIMATIONS RÉDUITES ===================== */

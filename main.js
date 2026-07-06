@@ -47,7 +47,20 @@ if (reduceMotion) {
 }
 
 // ---------------------------------------------------------------------
-// 4) Lien de nav surligné selon la section visible (scroll-spy)
+// 4) Accordéons Expérience / Éducation
+//    Le survol est géré en CSS ; ici on gère le clic / tap (utile sur
+//    mobile où il n'y a pas de survol) qui fixe l'ouverture.
+// ---------------------------------------------------------------------
+document.querySelectorAll(".entry-head").forEach((head) => {
+  head.addEventListener("click", () => {
+    const entry = head.parentElement;
+    const open = entry.classList.toggle("open");
+    head.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+});
+
+// ---------------------------------------------------------------------
+// 5) Lien de nav surligné selon la section visible (scroll-spy)
 // ---------------------------------------------------------------------
 const sections = document.querySelectorAll("section[id], header[id]");
 const navLinks = document.querySelectorAll(".topnav-links a");
