@@ -121,6 +121,18 @@
 
         <article class="entry">
           <button class="entry-head" type="button" aria-expanded="false">
+            <span class="entry-logo"><img src="assets/milliman.jpeg" alt="Milliman"></span>
+            <span class="entry-title">Quantitative Research Assistant <span class="at">@ Milliman</span></span>
+            <span class="entry-meta">20XX</span>
+            <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="entry-panel">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <button class="entry-head" type="button" aria-expanded="false">
             <span class="entry-logo"><img src="assets/bpce.jpeg" alt="Groupe BPCE"></span>
             <span class="entry-title">Data Scientist <span class="at">@ BPCE</span></span>
             <span class="entry-meta">20XX</span>
@@ -137,50 +149,38 @@
     <section id="projects" class="section reveal">
       <h2 class="section-title"><span class="section-num">02.</span> Projects</h2>
 
-      <div class="cards">
-        <a class="card" href="https://huggingface.co/spaces/nayelsdk1/boreas-weather-derivatives" target="_blank" rel="noopener">
-          <div class="card-head">
-            <span class="entry-logo">
-              <!-- Boreas logo: snowflake (north wind / temperature) -->
-              <svg class="boreas-logo" viewBox="0 0 24 24" fill="none" stroke="#1E5A96" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
-                <path d="M12 2v20M3.34 7l17.32 10M3.34 17l17.32-10"/>
-                <path d="M12 6.2l-2.1-2.1M12 6.2l2.1-2.1M12 17.8l-2.1 2.1M12 17.8l2.1 2.1"/>
-                <path d="M6.8 9.1l-2.9.2M6.8 9.1l-.2-2.9M17.2 14.9l2.9-.2M17.2 14.9l.2 2.9"/>
-                <path d="M6.8 14.9l-.2 2.9M6.8 14.9l-2.9-.2M17.2 9.1l.2-2.9M17.2 9.1l2.9.2"/>
-              </svg>
-            </span>
+      <!-- Projet phare : Boreas, étalé sur toute la largeur -->
+      <a class="feature" href="https://huggingface.co/spaces/nayelsdk1/boreas-weather-derivatives" target="_blank" rel="noopener">
+        <div class="feature-media" aria-hidden="true">
+          <svg class="boreas-logo-lg" viewBox="0 0 24 24" fill="none" stroke="#4A90D9" stroke-width="1.1" stroke-linecap="round">
+            <path d="M12 2v20M3.34 7l17.32 10M3.34 17l17.32-10"/>
+            <path d="M12 6.2l-2.1-2.1M12 6.2l2.1-2.1M12 17.8l-2.1 2.1M12 17.8l2.1 2.1"/>
+            <path d="M6.8 9.1l-2.9.2M6.8 9.1l-.2-2.9M17.2 14.9l2.9-.2M17.2 14.9l.2 2.9"/>
+            <path d="M6.8 14.9l-.2 2.9M6.8 14.9l-2.9-.2M17.2 9.1l.2-2.9M17.2 9.1l2.9.2"/>
+          </svg>
+        </div>
+        <div class="feature-body">
+          <div class="feature-top">
+            <p class="card-label">Quant · Research</p>
             <span class="arrow">↗</span>
           </div>
-          <p class="card-label">Quant · Research</p>
-          <h3 class="card-title">Boreas — Weather Derivatives</h3>
+          <h3 class="feature-title">Boreas — Weather Derivatives</h3>
           <p class="card-desc">
             An interactive pricing app for temperature-based weather derivatives
             (HDD/CDD calls). Combines Ornstein–Uhlenbeck processes, machine learning
-            (Ridge, Random Forest, XGBoost) and Monte-Carlo simulation.
+            (Ridge, Random Forest, XGBoost) and Monte-Carlo simulation — with climate
+            profiling, prediction fan charts, Monte-Carlo pricing and sensitivity
+            analysis (Greeks).
           </p>
           <ul class="tags">
             <li>Python</li>
             <li>Streamlit</li>
+            <li>Ornstein–Uhlenbeck</li>
             <li>Monte-Carlo</li>
             <li>ML</li>
           </ul>
-        </a>
-
-        <div class="card">
-          <div class="card-head">
-            <span class="entry-logo"><img src="assets/milliman.jpeg" alt="Milliman"></span>
-          </div>
-          <p class="card-label">Actuarial · Research</p>
-          <h3 class="card-title">Milliman — Research Assistant</h3>
-          <p class="card-desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <ul class="tags">
-            <li>To fill in</li>
-          </ul>
         </div>
-      </div>
+      </a>
     </section>
 
     <!-- ===================== 03 · EDUCATION ===================== -->
