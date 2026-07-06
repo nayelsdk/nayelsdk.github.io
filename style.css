@@ -198,8 +198,10 @@ strong { color: var(--heading); font-weight: 600; }
 
 .bio {
   font-size: 1.08rem;
-  max-width: 560px;
+  max-width: 680px;         /* un peu plus large */
   margin-top: 20px;
+  text-align: justify;      /* texte justifié */
+  hyphens: auto;
 }
 
 /* ===================== SECTIONS ===================== */
@@ -267,11 +269,17 @@ strong { color: var(--heading); font-weight: 600; }
 
 .entry-meta {
   margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--muted);
   flex-shrink: 0;
+  text-align: right;
 }
+.entry-loc { color: var(--accent); }   /* ville, pays en couleur d'accent */
 
 /* Vignette logo : toutes de la MÊME taille (carré fixe), fond blanc.
    Les logos sont rognés/nettoyés en amont pour bien remplir le carré. */
@@ -512,7 +520,10 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
   .topnav-links { display: none; }      /* sur mobile : on garde le logo + le toggle */
   /* En-tête d'entrée : on autorise le retour à la ligne sur petit écran */
   .entry-head { flex-wrap: wrap; gap: 10px; }
-  .entry-meta { margin-left: 0; width: 100%; order: 3; }
+  .entry-meta {
+    margin-left: 0; width: 100%; order: 3;
+    flex-direction: row; align-items: baseline; gap: 10px;
+  }
 }
 
 /* ===================== ANIMATIONS RÉDUITES ===================== */
