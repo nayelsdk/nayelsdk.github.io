@@ -485,21 +485,23 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
   overflow: hidden;
   transition: transform 0.2s var(--ease), border-color 0.2s var(--ease);
 }
-.feature:hover { transform: translateY(-4px); border-color: var(--accent); }
-.feature:hover .arrow { transform: translate(3px, -3px); }
-.feature:hover .boreas-logo-lg { transform: rotate(25deg); }
+.feature:hover { border-color: color-mix(in srgb, var(--accent) 40%, var(--border)); }
+.feature:hover .feature-media img { transform: scale(1.04); }
 
-/* Panneau visuel du projet phare, dans le système ambre */
+/* Panneau visuel du projet phare : le tableau « Boreas » de Waterhouse */
 .feature-media {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 48px;
+  overflow: hidden;
   border-right: 1px solid var(--border);
-  color: var(--accent);
-  background: radial-gradient(circle at 50% 40%, var(--accent-soft), transparent 70%);
+  background: var(--surface);
 }
-.boreas-logo-lg { width: 132px; height: 132px; transition: transform 0.4s var(--ease); }
+.feature-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  display: block;
+  transition: transform 0.5s var(--ease);
+}
 
 .feature-body { padding: 40px 40px; }
 .feature-top {
@@ -515,6 +517,47 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
   color: var(--heading);
   margin: 6px 0 14px;
 }
+
+/* Liens de recherche (ouvrir l'app / lire le rapport) */
+.feature-links { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 20px; }
+.rlink {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent);
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1.5px;
+  transition: background-size 0.25s var(--ease);
+}
+.rlink:hover { background-size: 100% 1.5px; }
+
+/* Phrase d'intro sous le titre de section */
+.section-intro {
+  color: var(--muted);
+  max-width: 620px;
+  margin: -18px 0 28px;
+}
+
+/* Sous-projet (Part 2) : carte plus petite que le projet phare */
+.subproject {
+  max-width: 660px;
+  margin-top: 20px;
+  padding: 26px 30px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.subproject-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--heading);
+  margin: 8px 0 12px;
+}
+.subproject .tags { margin-bottom: 16px; }
 
 /* ===================== TAGS & PILLS ===================== */
 .tags, .pills {
@@ -618,9 +661,8 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
   .feature-media {
     border-right: none;
     border-bottom: 1px solid var(--border);
-    padding: 32px;
+    height: 220px;
   }
-  .boreas-logo-lg { width: 92px; height: 92px; }
 }
 
 /* Mobile (≤640px) : nav en ligne défilante + lignes d'entrée réorganisées. */
