@@ -248,7 +248,8 @@ strong { color: var(--heading); font-weight: 600; }
   max-width: none;          /* la colonne hero borne déjà la largeur */
   margin-top: 20px;
   line-height: 1.6;
-  text-wrap: pretty;        /* évite les orphelines, bord droit propre */
+  text-align: justify;      /* texte justifié */
+  text-wrap: pretty;
 }
 .bio p { margin-top: 14px; }
 .bio p:first-child { margin-top: 0; }
@@ -368,7 +369,7 @@ strong { color: var(--heading); font-weight: 600; }
   box-shadow: inset 0 0 0 1px rgba(10, 25, 47, 0.06);
   border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
-  padding: 6px;
+  padding: 4px;                              /* réduit pour que le logo remplisse plus */
   overflow: hidden;
 }
 [data-theme="light"] .entry-logo { background: #FBFCFE; }
