@@ -512,8 +512,8 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
   border-right: none;
   border-left: 1px solid var(--border);
 }
-/* Le tableau de la Part 2 est en paysage : on cadre sur la femme */
-.feature--reverse .feature-media img { object-position: 50% 38%; }
+/* Le tableau de la Part 2 (portrait) : on cadre bas, sur la femme allongée */
+.feature--reverse .feature-media img { object-position: 50% 78%; }
 
 /* Projet secondaire : mini-carte, bien plus petite que les bandeaux */
 .also-label {
