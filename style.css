@@ -131,6 +131,26 @@ strong { color: var(--heading); font-weight: 600; }
 [data-theme="dark"] .icon-moon { display: none; }
 [data-theme="light"] .icon-sun { display: none; }
 
+/* ===================== FOCUS CLAVIER ===================== */
+/* Anneau visible uniquement au clavier (pas au clic souris). */
+.brand:focus-visible,
+.topnav-links a:focus-visible,
+.theme-toggle:focus-visible,
+.socials a:focus-visible,
+.btn:focus-visible,
+.feature:focus-visible,
+.entry-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+/* Le lien de nom : on réutilise l'indication du survol (trait + ambre). */
+.entry-link:focus-visible {
+  outline: none;
+  color: var(--accent);
+  background-size: 100% 1.5px;
+}
+
 /* ===================== CONTENEUR ===================== */
 .container {
   position: relative;
@@ -144,8 +164,8 @@ strong { color: var(--heading); font-weight: 600; }
 /* Photo à gauche, texte "about" en face à droite ; occupe l'écran. */
 .hero {
   display: grid;
-  grid-template-columns: minmax(200px, 300px) 1fr;
-  gap: 48px;
+  grid-template-columns: minmax(240px, 300px) minmax(0, 640px);
+  gap: 60px;
   align-items: center;
   min-height: calc(100vh - 128px);   /* remplit l'écran sous la nav */
   padding: 0 0 32px;
@@ -177,7 +197,8 @@ strong { color: var(--heading); font-weight: 600; }
 }
 .tagline {
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.3rem;
+  font-weight: 500;
   color: var(--text);
   margin-top: 10px;
 }
@@ -198,10 +219,10 @@ strong { color: var(--heading); font-weight: 600; }
 
 .bio {
   font-size: 1.08rem;
-  max-width: 680px;         /* un peu plus large */
-  margin-top: 20px;
-  text-align: justify;      /* texte justifié */
-  hyphens: auto;
+  max-width: none;          /* la colonne hero borne déjà la largeur */
+  margin-top: 18px;
+  line-height: 1.6;
+  text-wrap: pretty;        /* évite les orphelines, bord droit propre */
 }
 
 /* ===================== SECTIONS ===================== */
@@ -210,12 +231,13 @@ strong { color: var(--heading); font-weight: 600; }
 .section-title {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: clamp(1.7rem, 3vw, 2.1rem);
   font-weight: 600;
+  letter-spacing: -0.02em;
   color: var(--heading);
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 .section-num {
   font-family: var(--font-mono);
@@ -240,8 +262,7 @@ strong { color: var(--heading); font-weight: 600; }
 .entry {
   border: 1px solid var(--border);
   border-radius: 10px;
-  overflow: hidden;
-  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease), transform 0.1s var(--ease);
 }
 
 /* En-tête cliquable (bouton pleine largeur) */
@@ -304,12 +325,14 @@ strong { color: var(--heading); font-weight: 600; }
   flex-shrink: 0;
   width: 48px; height: 48px;
   border-radius: 10px;
-  background: #fff;
+  background: #F3F5F8;                        /* gris très clair « enfoncé » plutôt que blanc pur */
+  box-shadow: inset 0 0 0 1px rgba(10, 25, 47, 0.06);
   border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
   padding: 6px;
   overflow: hidden;
 }
+[data-theme="light"] .entry-logo { background: #FBFCFE; }
 .entry-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
 /* Chevron qui pivote à l'ouverture */
@@ -341,8 +364,13 @@ strong { color: var(--heading); font-weight: 600; }
 }
 .entry-panel p { font-size: 0.95rem; margin-bottom: 12px; }
 
-/* Léger surlignage au survol (indique que c'est cliquable) — sans dérouler */
-.entry:hover { border-color: var(--muted); }
+/* Survol : bordure qui s'accentue + chevron ambre (indique que c'est cliquable) */
+.entry:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: var(--surface);
+}
+.entry:hover .chevron { color: var(--accent); }
+.entry-head:active { transform: scale(0.997); }
 
 /* Ouverture UNIQUEMENT au clic (classe .open posée par le JS) */
 .entry.open {
@@ -407,7 +435,8 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
 /* ===================== PROJET PHARE (pleine largeur) ===================== */
 .feature {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 340px 1fr;
+  min-height: 300px;
   text-decoration: none;
   color: var(--text);
   background: var(--surface);
@@ -417,19 +446,22 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
   transition: transform 0.2s var(--ease), border-color 0.2s var(--ease);
 }
 .feature:hover { transform: translateY(-4px); border-color: var(--accent); }
+.feature:hover .arrow { transform: translate(3px, -3px); }
+.feature:hover .boreas-logo-lg { transform: rotate(25deg); }
 
-/* Panneau visuel « météo » avec le flocon */
+/* Panneau visuel du projet phare, dans le système ambre */
 .feature-media {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px;
+  padding: 48px;
   border-right: 1px solid var(--border);
-  background: radial-gradient(circle at 50% 40%, rgba(74, 144, 217, 0.22), rgba(30, 90, 150, 0.05));
+  color: var(--accent);
+  background: radial-gradient(circle at 50% 40%, var(--accent-soft), transparent 70%);
 }
-.boreas-logo-lg { width: 104px; height: 104px; }
+.boreas-logo-lg { width: 132px; height: 132px; transition: transform 0.4s var(--ease); }
 
-.feature-body { padding: 34px 36px; }
+.feature-body { padding: 40px 40px; }
 .feature-top {
   display: flex;
   align-items: center;
@@ -437,10 +469,11 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
 }
 .feature-title {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 600;
+  letter-spacing: -0.02em;
   color: var(--heading);
-  margin: 6px 0 12px;
+  margin: 6px 0 14px;
 }
 
 /* ===================== TAGS & PILLS ===================== */
@@ -515,15 +548,20 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
 .reveal {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  transition: opacity 0.55s var(--ease) var(--d, 0ms), transform 0.55s var(--ease) var(--d, 0ms);
 }
 .reveal.in-view { opacity: 1; transform: none; }
 
 /* ===================== RESPONSIVE ===================== */
-/* Sous 640px seulement : le hero s'empile (photo au-dessus du texte) et
-   les cartes / le bandeau passent en une seule colonne. Au-dessus, le hero
-   reste photo-à-gauche / texte-à-droite. */
-@media (max-width: 640px) {
+
+/* Tablette large (≤900px) : on resserre le hero avant l'empilement. */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: minmax(200px, 260px) 1fr; gap: 40px; }
+  .feature { grid-template-columns: 300px 1fr; }
+}
+
+/* Tablette portrait & petits écrans (≤760px) : tout passe en une colonne. */
+@media (max-width: 760px) {
   .hero {
     grid-template-columns: 1fr;
     text-align: center;
@@ -532,26 +570,48 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
     padding: 16px 0 40px;
   }
   .hero-photo img { max-width: 240px; margin: 0 auto; display: block; }
-  .bio { margin-left: auto; margin-right: auto; }
+  .bio { max-width: 560px; margin-left: auto; margin-right: auto; }
   .socials { justify-content: center; }
   .cards { grid-template-columns: 1fr; }
   /* Boreas : le panneau visuel passe au-dessus du texte */
-  .feature { grid-template-columns: 1fr; }
+  .feature { grid-template-columns: 1fr; min-height: 0; }
   .feature-media {
     border-right: none;
     border-bottom: 1px solid var(--border);
     padding: 32px;
   }
-  .boreas-logo-lg { width: 84px; height: 84px; }
+  .boreas-logo-lg { width: 92px; height: 92px; }
 }
 
+/* Mobile (≤640px) : nav en ligne défilante + lignes d'entrée réorganisées. */
 @media (max-width: 640px) {
-  .topnav-links { display: none; }      /* sur mobile : on garde le logo + le toggle */
-  /* En-tête d'entrée : on autorise le retour à la ligne sur petit écran */
-  .entry-head { flex-wrap: wrap; gap: 10px; }
+  .topnav { flex-wrap: wrap; row-gap: 10px; }
+  .topnav-links {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    gap: 18px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .topnav-links::-webkit-scrollbar { display: none; }
+
+  /* Ligne en grille : logo + titre + flèche en haut, ville/date dessous */
+  .entry-head {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "logo title toggle" ". meta meta";
+    align-items: center;
+    gap: 8px 12px;
+  }
+  .entry-logo { grid-area: logo; }
+  .entry-title { grid-area: title; min-width: 0; }
+  .entry-toggle { grid-area: toggle; }
   .entry-meta {
-    margin-left: 0; width: 100%; order: 3;
-    flex-direction: row; align-items: baseline; gap: 10px;
+    grid-area: meta;
+    margin: 0; width: auto;
+    flex-direction: row; align-items: baseline; gap: 10px; text-align: left;
   }
 }
 

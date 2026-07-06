@@ -27,6 +27,13 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 // ---------------------------------------------------------------------
 // 3) Apparition des sections au défilement
 // ---------------------------------------------------------------------
+// Cascade : chaque ligne d'une liste apparaît avec un léger décalage
+document.querySelectorAll(".timeline").forEach((list) => {
+  list.querySelectorAll(".entry").forEach((el, i) => {
+    el.style.setProperty("--d", i * 80 + "ms");
+  });
+});
+
 const revealEls = document.querySelectorAll(".reveal");
 
 if (reduceMotion) {
