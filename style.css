@@ -428,25 +428,25 @@ strong { color: var(--heading); font-weight: 600; }
 }
 
 /* ============================================================
-   EXPÉRIENCE — panneau déroulé raffiné (« note en marge »).
-   SCOPÉ à .entry-panel.exp pour que les 5 entrées Éducation
-   (qui partagent .entry-panel / .tags) restent intactes.
+   Panneau déroulé raffiné (« note en marge ») — Expérience ET
+   Éducation. Modificateur .rich posé sur les panneaux concernés
+   (les entrées sans .rich gardent le style de base sobre).
    Calage : logo 48px + gap 14px = 62px -> la prose et la stack
    « pendent » sous le titre, pas sous le logo.
    ============================================================ */
-.entry.open .entry-panel.exp {
+.entry.open .entry-panel.rich {
   max-height: 500px;
   padding: 2px 20px 20px;
 }
 /* Indentation suspendue : prose + stack alignées sous le titre */
-.entry.open .entry-panel.exp > p,
-.entry.open .entry-panel.exp > .tags {
+.entry.open .entry-panel.rich > p,
+.entry.open .entry-panel.rich > .tags {
   margin-left: 62px;
   padding-left: 20px;
   max-width: 62ch;
 }
 /* Prose : interligne plus aéré, couleur de corps, pas d'orphelines */
-.entry.open .entry-panel.exp > p {
+.entry.open .entry-panel.rich > p {
   position: relative;
   font-family: var(--font-body);
   font-size: 0.95rem;
@@ -459,7 +459,7 @@ strong { color: var(--heading); font-weight: 600; }
 /* Le seul accent : un filet ambre de 1px en marge, allumé en haut
    puis estompé vers le bas (dégradé). Repli couleur pleine si pas
    de color-mix. Rappelle le soulignement ambre des .entry-link. */
-.entry.open .entry-panel.exp > p::before {
+.entry.open .entry-panel.rich > p::before {
   content: "";
   position: absolute;
   left: 0; top: 0.15em; bottom: 0;
@@ -474,17 +474,17 @@ strong { color: var(--heading); font-weight: 600; }
   );
 }
 /* Stack : réutilise .tags ; un filet horizontal fin la sépare de la prose */
-.entry.open .entry-panel.exp > .tags.stack {
+.entry.open .entry-panel.rich > .tags.stack {
   padding-top: 14px;
   border-top: 1px solid var(--border);
 }
 @media (max-width: 640px) {
-  .entry.open .entry-panel.exp { max-height: 700px; padding: 2px 16px 18px; }
-  .entry.open .entry-panel.exp > p,
-  .entry.open .entry-panel.exp > .tags {
+  .entry.open .entry-panel.rich { max-height: 700px; padding: 2px 16px 18px; }
+  .entry.open .entry-panel.rich > p,
+  .entry.open .entry-panel.rich > .tags {
     margin-left: 0; padding-left: 16px; max-width: none;
   }
-  .entry.open .entry-panel.exp > p { line-height: 1.65; }
+  .entry.open .entry-panel.rich > p { line-height: 1.65; }
 }
 
 /* ===================== CARTES PROJETS ===================== */
