@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=21">
+  <link rel="stylesheet" href="style.css?v=22">
 </head>
 <body id="top">
 
@@ -170,21 +170,18 @@
         from weather derivatives to commodity trading.
       </p>
 
-      <!-- Part 1 : Boreas, en grand -->
-      <div class="feature">
+      <!-- Part 1 : Boreas — cliquer ouvre la fiche détaillée (peinture + write-up) -->
+      <div class="feature" role="button" tabindex="0" data-modal="boreasModal" aria-label="Open the Boreas project details">
         <div class="feature-media">
           <img src="assets/boreas.jpg?v=1" alt="Boreas by John William Waterhouse">
+          <span class="feature-expand" aria-hidden="true">⤢</span>
         </div>
         <div class="feature-body">
           <p class="card-label">Part 1 · Weather-derivative pricing</p>
           <h3 class="feature-title">Boreas · Weather Derivatives</h3>
           <p class="card-desc">
-            I model daily temperature for the US cities on the CME weather market with an
-            Ornstein–Uhlenbeck process and machine-learning forecasters (Ridge, Random
-            Forest, XGBoost), trained by nested cross-validation on seventy years of data.
-            The models then price Heating Degree Day call options, backtested over five
-            winters (2020 to 2025). Boreas is the end-to-end dashboard that turns these
-            models into live prices for commodity traders.
+            Stochastic and machine-learning temperature models for pricing weather
+            derivatives, wrapped in Boreas, an end-to-end trading dashboard.
           </p>
           <ul class="tags">
             <li>Ornstein–Uhlenbeck</li>
@@ -193,10 +190,7 @@
             <li>Monte-Carlo</li>
             <li>Streamlit</li>
           </ul>
-          <div class="feature-links">
-            <a class="rlink" href="https://huggingface.co/spaces/nayelsdk1/boreas-weather-derivatives" target="_blank" rel="noopener">Open the app ↗</a>
-            <a class="rlink" href="assets/boreas-report.pdf" target="_blank" rel="noopener">Read the report ↗</a>
-          </div>
+          <p class="feature-cue">View the painting &amp; full write-up ↗</p>
         </div>
       </div>
 
@@ -220,6 +214,47 @@
         <a class="rlink" href="assets/gas-volatility-extension.pdf" target="_blank" rel="noopener">Read the extension ↗</a>
       </div>
     </section>
+
+    <!-- Fiche détaillée du projet Boreas (peinture + write-up) -->
+    <div class="modal" id="boreasModal" aria-hidden="true">
+      <div class="modal-overlay" data-close></div>
+      <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="boreasModalTitle">
+        <button class="modal-close" type="button" data-close aria-label="Close">×</button>
+        <div class="modal-art">
+          <img src="assets/boreas.jpg?v=1" alt="Boreas by John William Waterhouse">
+          <p class="modal-caption">
+            In wind-blown draperies of slate-colour and blue, a girl passes through a
+            spring landscape accented by pink blossom and daffodils.
+          </p>
+          <p class="modal-credit">John William Waterhouse · Boreas, 1903</p>
+        </div>
+        <div class="modal-body">
+          <p class="card-label">Part 1 · Weather-derivative pricing</p>
+          <h3 id="boreasModalTitle" class="modal-title">Boreas · Weather Derivatives</h3>
+          <p>
+            I model daily temperature for the US cities on the CME weather market with an
+            Ornstein–Uhlenbeck process and machine-learning forecasters (Ridge, Random
+            Forest, XGBoost), trained by nested cross-validation on seventy years of data.
+          </p>
+          <p>
+            The models then price Heating Degree Day call options, backtested over five
+            winters (2020 to 2025). Boreas is the end-to-end dashboard that turns these
+            models into live prices for commodity traders.
+          </p>
+          <ul class="tags">
+            <li>Ornstein–Uhlenbeck</li>
+            <li>Ridge / RF / XGBoost</li>
+            <li>HDD options</li>
+            <li>Monte-Carlo</li>
+            <li>Streamlit</li>
+          </ul>
+          <div class="feature-links">
+            <a class="rlink" href="https://huggingface.co/spaces/nayelsdk1/boreas-weather-derivatives" target="_blank" rel="noopener">Open the app ↗</a>
+            <a class="rlink" href="assets/boreas-report.pdf" target="_blank" rel="noopener">Read the report ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ===================== 03 · EDUCATION ===================== -->
     <section id="education" class="section">
@@ -305,6 +340,6 @@
 
   </main>
 
-  <script src="main.js?v=15"></script>
+  <script src="main.js?v=22"></script>
 </body>
 </html>

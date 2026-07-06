@@ -90,3 +90,40 @@ const spyObserver = new IntersectionObserver(
   { rootMargin: "-45% 0px -50% 0px" }
 );
 sections.forEach((section) => spyObserver.observe(section));
+
+// ---------------------------------------------------------------------
+// 6) Modale (fiche détaillée du projet Boreas)
+// ---------------------------------------------------------------------
+let modalLastFocus = null;
+
+document.querySelectorAll("[data-modal]").forEach((trigger) => {
+  const modal = document.getElementById(trigger.getAttribute("data-modal"));
+  if (!modal) return;
+  const openModal = () => {
+    modalLastFocus = trigger;
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";      // bloque le scroll de fond
+    const closeBtn = modal.querySelector(".modal-close");
+    if (closeBtn) closeBtn.focus();
+  };
+  trigger.addEventListener("click", openModal);
+  trigger.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(); }
+  });
+});
+
+document.querySelectorAll(".modal").forEach((modal) => {
+  const closeModal = () => {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (modalLastFocus) modalLastFocus.focus();   // rend le focus au déclencheur
+  };
+  // Fermeture : bouton ×, clic sur le fond
+  modal.querySelectorAll("[data-close]").forEach((el) => el.addEventListener("click", closeModal));
+  // Fermeture : touche Échap
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
+  });
+});

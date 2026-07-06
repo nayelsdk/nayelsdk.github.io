@@ -559,6 +559,103 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
 }
 .subproject .tags { margin-bottom: 16px; }
 
+/* Projet phare cliquable : curseur + icône d'agrandissement + indice */
+.feature { cursor: pointer; }
+.feature-expand {
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(10, 25, 47, 0.65);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.2s var(--ease);
+}
+.feature:hover .feature-expand,
+.feature:focus-visible .feature-expand { opacity: 1; }
+.feature-cue {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-top: 18px;
+}
+
+/* ===================== MODALE (fiche projet Boreas) ===================== */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modal.open { display: flex; }
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 10, 22, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.modal-box {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) 1fr;
+  width: 100%;
+  max-width: 960px;
+  max-height: 88vh;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.7);
+}
+.modal-art {
+  background: var(--surface-2);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+.modal-art img { width: 100%; border-radius: 8px; display: block; }
+.modal-caption { font-size: 0.9rem; font-style: italic; color: var(--text); }
+.modal-credit { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+.modal-body { padding: 34px 36px; overflow-y: auto; }
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem; font-weight: 600; letter-spacing: -0.02em;
+  color: var(--heading);
+  margin: 6px 0 16px;
+}
+.modal-body p { margin-bottom: 16px; }
+.modal-body .tags { margin-bottom: 20px; }
+.modal-close {
+  position: absolute;
+  top: 12px; right: 12px;
+  z-index: 2;
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1.4rem; line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.modal-close:hover { color: var(--accent); border-color: var(--accent); }
+
+@media (max-width: 720px) {
+  .modal-box { grid-template-columns: 1fr; max-height: 90vh; }
+  .modal-art { max-height: 44vh; }
+  .modal-body { padding: 26px 24px; }
+}
+
 /* ===================== TAGS & PILLS ===================== */
 .tags, .pills {
   list-style: none;
