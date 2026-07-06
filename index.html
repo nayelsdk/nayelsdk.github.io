@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="style.css?v=13">
 </head>
 <body id="top">
 
@@ -95,48 +95,48 @@
       <div class="timeline">
         <!-- Click the arrow to expand -->
         <article class="entry">
-          <button class="entry-head" type="button" aria-expanded="false">
+          <div class="entry-head">
             <span class="entry-logo"><img src="assets/corpy.png?v=10" alt="Corpy"></span>
-            <span class="entry-title">AI Engineer <span class="at">@ Corpy&amp;Co</span></span>
+            <span class="entry-title">AI Engineer <a class="at entry-link" href="https://corpy.co.jp/" target="_blank" rel="noopener">@ Corpy&amp;Co</a></span>
             <span class="entry-meta"><span class="entry-loc">Tokyo, Japan</span>20XX</span>
-            <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
+            <button class="entry-toggle" type="button" aria-expanded="false" aria-label="Show details"><svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          </div>
           <div class="entry-panel">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           </div>
         </article>
 
         <article class="entry">
-          <button class="entry-head" type="button" aria-expanded="false">
+          <div class="entry-head">
             <span class="entry-logo"><img src="assets/natixis.png?v=10" alt="Natixis"></span>
-            <span class="entry-title">Quant Researcher <span class="at">@ Natixis</span></span>
+            <span class="entry-title">Quant Researcher <a class="at entry-link" href="https://www.natixis.com/" target="_blank" rel="noopener">@ Natixis</a></span>
             <span class="entry-meta"><span class="entry-loc">Paris, France</span>20XX</span>
-            <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
+            <button class="entry-toggle" type="button" aria-expanded="false" aria-label="Show details"><svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          </div>
           <div class="entry-panel">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
           </div>
         </article>
 
         <article class="entry">
-          <button class="entry-head" type="button" aria-expanded="false">
+          <div class="entry-head">
             <span class="entry-logo"><img src="assets/milliman.jpeg?v=10" alt="Milliman"></span>
-            <span class="entry-title">Quantitative Research Assistant <span class="at">@ Milliman</span></span>
+            <span class="entry-title">Quantitative Research Assistant <a class="at entry-link" href="https://www.milliman.com/" target="_blank" rel="noopener">@ Milliman</a></span>
             <span class="entry-meta"><span class="entry-loc">Paris, France</span>20XX</span>
-            <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
+            <button class="entry-toggle" type="button" aria-expanded="false" aria-label="Show details"><svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          </div>
           <div class="entry-panel">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           </div>
         </article>
 
         <article class="entry">
-          <button class="entry-head" type="button" aria-expanded="false">
+          <div class="entry-head">
             <span class="entry-logo"><img src="assets/bpce.jpeg?v=10" alt="Groupe BPCE"></span>
-            <span class="entry-title">Data Scientist <span class="at">@ BPCE</span></span>
+            <span class="entry-title">Data Scientist <a class="at entry-link" href="https://www.groupebpce.com/" target="_blank" rel="noopener">@ BPCE</a></span>
             <span class="entry-meta"><span class="entry-loc">Paris, France</span>20XX</span>
-            <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
+            <button class="entry-toggle" type="button" aria-expanded="false" aria-label="Show details"><svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          </div>
           <div class="entry-panel">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
           </div>
@@ -188,48 +188,48 @@
 
       <div class="timeline">
         <article class="entry">
-          <button class="entry-head" type="button" aria-expanded="false">
+          <div class="entry-head">
             <span class="entry-logo"><img src="assets/logo_ensae.png?v=10" alt="ENSAE Paris"></span>
-            <span class="entry-title">ENSAE Paris <span class="at">— IP Paris</span></span>
+            <span class="entry-title"><a class="entry-link" href="https://www.ensae.fr/" target="_blank" rel="noopener">ENSAE Paris</a> <span class="at">— IP Paris</span></span>
             <span class="entry-meta"><span class="entry-loc">Palaiseau, France</span>2023 — 2026</span>
-            <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
+            <button class="entry-toggle" type="button" aria-expanded="false" aria-label="Show details"><svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          </div>
           <div class="entry-panel">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           </div>
         </article>
 
         <article class="entry">
-          <button class="entry-head" type="button" aria-expanded="false">
+          <div class="entry-head">
             <span class="entry-logo"><img src="assets/snu.jpg?v=10" alt="Seoul National University"></span>
-            <span class="entry-title">Seoul National University <span class="at">— SNU</span></span>
+            <span class="entry-title"><a class="entry-link" href="https://en.snu.ac.kr/" target="_blank" rel="noopener">Seoul National University</a> <span class="at">— SNU</span></span>
             <span class="entry-meta"><span class="entry-loc">Seoul, South Korea</span>20XX</span>
-            <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
+            <button class="entry-toggle" type="button" aria-expanded="false" aria-label="Show details"><svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          </div>
           <div class="entry-panel">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
           </div>
         </article>
 
         <article class="entry">
-          <button class="entry-head" type="button" aria-expanded="false">
+          <div class="entry-head">
             <span class="entry-logo"><img src="assets/mines.webp?v=10" alt="Mines Saint-Étienne"></span>
-            <span class="entry-title">Mines Saint-Étienne</span>
+            <span class="entry-title"><a class="entry-link" href="https://www.mines-stetienne.fr/" target="_blank" rel="noopener">Mines Saint-Étienne</a></span>
             <span class="entry-meta"><span class="entry-loc">Saint-Étienne, France</span>20XX</span>
-            <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
+            <button class="entry-toggle" type="button" aria-expanded="false" aria-label="Show details"><svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          </div>
           <div class="entry-panel">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
           </div>
         </article>
 
         <article class="entry">
-          <button class="entry-head" type="button" aria-expanded="false">
+          <div class="entry-head">
             <span class="entry-logo"><img src="assets/stanislas.jpeg?v=10" alt="Collège Stanislas"></span>
-            <span class="entry-title">Collège Stanislas <span class="at">— Paris</span></span>
+            <span class="entry-title"><a class="entry-link" href="https://www.stanislas.fr/" target="_blank" rel="noopener">Collège Stanislas</a> <span class="at">— Paris</span></span>
             <span class="entry-meta"><span class="entry-loc">Paris, France</span>20XX</span>
-            <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
+            <button class="entry-toggle" type="button" aria-expanded="false" aria-label="Show details"><svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+          </div>
           <div class="entry-panel">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
           </div>
@@ -266,6 +266,6 @@
 
   </main>
 
-  <script src="main.js?v=10"></script>
+  <script src="main.js?v=13"></script>
 </body>
 </html>

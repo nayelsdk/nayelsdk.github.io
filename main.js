@@ -52,10 +52,14 @@ if (reduceMotion) {
 //    mobile où il n'y a pas de survol) qui fixe l'ouverture.
 // ---------------------------------------------------------------------
 document.querySelectorAll(".entry-head").forEach((head) => {
-  head.addEventListener("click", () => {
+  head.addEventListener("click", (e) => {
+    // Si on clique sur un lien (nom d'entreprise/école), on laisse le lien
+    // s'ouvrir sans dérouler/replier l'entrée.
+    if (e.target.closest("a")) return;
     const entry = head.parentElement;
     const open = entry.classList.toggle("open");
-    head.setAttribute("aria-expanded", open ? "true" : "false");
+    const toggle = head.querySelector(".entry-toggle");
+    if (toggle) toggle.setAttribute("aria-expanded", open ? "true" : "false");
   });
 });
 
