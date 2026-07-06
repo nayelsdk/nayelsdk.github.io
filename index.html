@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=22">
+  <link rel="stylesheet" href="style.css?v=23">
 </head>
 <body id="top">
 
@@ -194,24 +194,28 @@
         </div>
       </div>
 
-      <!-- Part 2 : extension gaz naturel, en plus petit -->
-      <div class="subproject">
-        <p class="card-label">Part 2 · Extension</p>
-        <h3 class="subproject-title">From Winter Temperatures to Natural-Gas Volatility</h3>
-        <p class="card-desc">
-          A shorter follow-up that links winter temperature anomalies to Henry Hub
-          natural gas volatility, through a Schwartz–Smith state-space model (Kalman
-          filter) and a weather-coupled Student-t GARCH. The honest takeaway: the
-          temperature signal is genuine on historical data, but the edge largely
-          evaporates on new data.
-        </p>
-        <ul class="tags">
-          <li>Schwartz–Smith</li>
-          <li>Kalman filter</li>
-          <li>GARCH</li>
-          <li>Henry Hub</li>
-        </ul>
-        <a class="rlink" href="assets/gas-volatility-extension.pdf" target="_blank" rel="noopener">Read the extension ↗</a>
+      <!-- Part 2 : extension gaz — bandeau miroir (tableau à droite) -->
+      <div class="feature feature--reverse" role="button" tabindex="0" data-modal="gasModal" aria-label="Open the natural-gas extension details">
+        <div class="feature-body">
+          <p class="card-label">Part 2 · Extension</p>
+          <h3 class="feature-title">From Winter Temperatures to Natural-Gas Volatility</h3>
+          <p class="card-desc">
+            A follow-up that links winter temperature anomalies to Henry Hub natural gas
+            volatility, through a Schwartz–Smith state-space model and a weather-coupled
+            GARCH.
+          </p>
+          <ul class="tags">
+            <li>Schwartz–Smith</li>
+            <li>Kalman filter</li>
+            <li>GARCH</li>
+            <li>Henry Hub</li>
+          </ul>
+          <p class="feature-cue">View the painting &amp; full write-up ↗</p>
+        </div>
+        <div class="feature-media">
+          <img src="assets/extension.jpg?v=1" alt="Russian church in winter by Konstantin Gorbatov">
+          <span class="feature-expand" aria-hidden="true">⤢</span>
+        </div>
       </div>
     </section>
 
@@ -251,6 +255,46 @@
           <div class="feature-links">
             <a class="rlink" href="https://huggingface.co/spaces/nayelsdk1/boreas-weather-derivatives" target="_blank" rel="noopener">Open the app ↗</a>
             <a class="rlink" href="assets/boreas-report.pdf" target="_blank" rel="noopener">Read the report ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fiche détaillée de l'extension gaz (peinture + write-up) -->
+    <div class="modal" id="gasModal" aria-hidden="true">
+      <div class="modal-overlay" data-close></div>
+      <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="gasModalTitle">
+        <button class="modal-close" type="button" data-close aria-label="Close">×</button>
+        <div class="modal-art">
+          <img src="assets/extension.jpg?v=1" alt="Russian church in winter by Konstantin Gorbatov">
+          <p class="modal-caption">
+            Under a green-and-amber winter sky, a lone figure crosses the snow toward a
+            Russian church crowned with golden domes.
+          </p>
+          <p class="modal-credit">Konstantin Gorbatov · Russian church in winter</p>
+        </div>
+        <div class="modal-body">
+          <p class="card-label">Part 2 · Extension</p>
+          <h3 id="gasModalTitle" class="modal-title">From Winter Temperatures to Natural-Gas Volatility</h3>
+          <p>
+            A follow-up study that links winter temperature anomalies to the volatility
+            of Henry Hub natural gas. I fit a Schwartz–Smith two-factor state-space model
+            with a Kalman filter, then a weather-coupled Student-t GARCH that feeds
+            temperature anomalies into the volatility dynamics.
+          </p>
+          <p>
+            The honest takeaway: the temperature signal is genuine on historical data,
+            but the edge largely evaporates on new data. Skill measured on history
+            rarely survives on live markets.
+          </p>
+          <ul class="tags">
+            <li>Schwartz–Smith</li>
+            <li>Kalman filter</li>
+            <li>GARCH</li>
+            <li>Henry Hub</li>
+          </ul>
+          <div class="feature-links">
+            <a class="rlink" href="assets/gas-volatility-extension.pdf" target="_blank" rel="noopener">Read the extension ↗</a>
           </div>
         </div>
       </div>

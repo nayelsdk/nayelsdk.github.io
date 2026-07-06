@@ -503,6 +503,13 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
   transition: transform 0.5s var(--ease);
 }
 
+/* Bandeau miroir (Part 2) : texte à gauche, tableau à droite — rythme dynamique */
+.feature--reverse { grid-template-columns: 1fr 340px; margin-top: 20px; }
+.feature--reverse .feature-media {
+  border-right: none;
+  border-left: 1px solid var(--border);
+}
+
 .feature-body { padding: 40px 40px; }
 .feature-top {
   display: flex;
@@ -738,6 +745,7 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
 @media (max-width: 900px) {
   .hero { grid-template-columns: minmax(200px, 260px) 1fr; gap: 40px; }
   .feature { grid-template-columns: 300px 1fr; }
+  .feature--reverse { grid-template-columns: 1fr 300px; }
 }
 
 /* Tablette portrait & petits écrans (≤760px) : tout passe en une colonne. */
@@ -753,13 +761,15 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
   .bio { max-width: 560px; margin-left: auto; margin-right: auto; }
   .socials { justify-content: center; }
   .cards { grid-template-columns: 1fr; }
-  /* Boreas : le panneau visuel passe au-dessus du texte */
+  /* Les bandeaux passent en une colonne, tableau au-dessus du texte */
   .feature { grid-template-columns: 1fr; min-height: 0; }
   .feature-media {
     border-right: none;
+    border-left: none;
     border-bottom: 1px solid var(--border);
     height: 220px;
   }
+  .feature--reverse .feature-media { order: -1; }
 }
 
 /* Mobile (≤640px) : nav en ligne défilante + lignes d'entrée réorganisées. */
