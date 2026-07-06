@@ -14,6 +14,7 @@
   --accent:    #E0A44C;   /* ambre / or : LA couleur d'accent */
   --accent-soft: rgba(224, 164, 76, 0.12);
   --on-accent: #0A192F;   /* texte posé sur la couleur d'accent */
+  --status:    #3FCF8E;   /* vert « disponible » (statut uniquement) */
   --border:    rgba(136, 146, 176, 0.2);
   --nav-bg:    rgba(10, 25, 47, 0.85);
 }
@@ -28,6 +29,7 @@
   --accent:    #B67A12;   /* ocre / or foncé, lisible sur blanc */
   --accent-soft: rgba(182, 122, 18, 0.1);
   --on-accent: #FFFFFF;
+  --status:    #0E9E6E;   /* vert « disponible » lisible sur blanc */
   --border:    rgba(11, 27, 52, 0.12);
   --nav-bg:    rgba(247, 249, 252, 0.85);
 }
@@ -196,11 +198,35 @@ strong { color: var(--heading); font-weight: 600; }
   letter-spacing: -0.02em;
 }
 .tagline {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 500;
-  color: var(--text);
-  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.98rem;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+  margin-top: 12px;
+}
+
+/* Ligne de disponibilité : point vert pulsant + texte vert */
+.availability {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--status);
+  margin-top: 14px;
+}
+.status-dot {
+  flex-shrink: 0;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--status);
+  box-shadow: 0 0 0 0 var(--status);
+  animation: pulse-status 2.2s infinite;
+}
+@keyframes pulse-status {
+  0%   { box-shadow: 0 0 0 0 rgba(63, 207, 142, 0.5); }
+  70%  { box-shadow: 0 0 0 9px rgba(63, 207, 142, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(63, 207, 142, 0); }
 }
 
 .socials {
@@ -218,12 +244,25 @@ strong { color: var(--heading); font-weight: 600; }
 .socials .hf { font-size: 22px; line-height: 1; } /* logo Hugging Face en emoji */
 
 .bio {
-  font-size: 1.08rem;
+  font-size: 1.05rem;
   max-width: none;          /* la colonne hero borne déjà la largeur */
-  margin-top: 18px;
+  margin-top: 20px;
   line-height: 1.6;
   text-wrap: pretty;        /* évite les orphelines, bord droit propre */
 }
+.bio p { margin-top: 14px; }
+.bio p:first-child { margin-top: 0; }
+/* Lien dans la bio : ambre + trait qui grandit au survol */
+.bio a {
+  color: var(--accent);
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1.5px;
+  transition: background-size 0.25s var(--ease);
+}
+.bio a:hover { background-size: 100% 1.5px; }
 
 /* ===================== SECTIONS ===================== */
 .section { margin-bottom: 72px; scroll-margin-top: 80px; }
