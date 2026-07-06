@@ -427,6 +427,66 @@ strong { color: var(--heading); font-weight: 600; }
   color: var(--accent);
 }
 
+/* ============================================================
+   EXPÉRIENCE — panneau déroulé raffiné (« note en marge »).
+   SCOPÉ à .entry-panel.exp pour que les 5 entrées Éducation
+   (qui partagent .entry-panel / .tags) restent intactes.
+   Calage : logo 48px + gap 14px = 62px -> la prose et la stack
+   « pendent » sous le titre, pas sous le logo.
+   ============================================================ */
+.entry.open .entry-panel.exp {
+  max-height: 500px;
+  padding: 2px 20px 20px;
+}
+/* Indentation suspendue : prose + stack alignées sous le titre */
+.entry.open .entry-panel.exp > p,
+.entry.open .entry-panel.exp > .tags {
+  margin-left: 62px;
+  padding-left: 20px;
+  max-width: 62ch;
+}
+/* Prose : interligne plus aéré, couleur de corps, pas d'orphelines */
+.entry.open .entry-panel.exp > p {
+  position: relative;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.72;
+  color: var(--text);
+  margin-top: 0;
+  margin-bottom: 16px;
+  text-wrap: pretty;
+}
+/* Le seul accent : un filet ambre de 1px en marge, allumé en haut
+   puis estompé vers le bas (dégradé). Repli couleur pleine si pas
+   de color-mix. Rappelle le soulignement ambre des .entry-link. */
+.entry.open .entry-panel.exp > p::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.15em; bottom: 0;
+  width: 1px;
+  border-radius: 1px;
+  background: var(--accent);
+  background: linear-gradient(
+    to bottom,
+    var(--accent) 0,
+    color-mix(in srgb, var(--accent) 35%, transparent) 2.2em,
+    color-mix(in srgb, var(--accent) 12%, transparent) 100%
+  );
+}
+/* Stack : réutilise .tags ; un filet horizontal fin la sépare de la prose */
+.entry.open .entry-panel.exp > .tags.stack {
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+@media (max-width: 640px) {
+  .entry.open .entry-panel.exp { max-height: 700px; padding: 2px 16px 18px; }
+  .entry.open .entry-panel.exp > p,
+  .entry.open .entry-panel.exp > .tags {
+    margin-left: 0; padding-left: 16px; max-width: none;
+  }
+  .entry.open .entry-panel.exp > p { line-height: 1.65; }
+}
+
 /* ===================== CARTES PROJETS ===================== */
 .cards {
   display: grid;
