@@ -490,11 +490,14 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
 
 /* Panneau visuel du projet phare : le tableau « Boreas » de Waterhouse */
 .feature-media {
+  position: relative;                 /* l'image en absolu ne dicte plus la hauteur */
   overflow: hidden;
   border-right: 1px solid var(--border);
   background: var(--surface);
 }
 .feature-media img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -509,6 +512,44 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
   border-right: none;
   border-left: 1px solid var(--border);
 }
+/* Le tableau de la Part 2 est en paysage : on cadre sur la femme */
+.feature--reverse .feature-media img { object-position: 50% 38%; }
+
+/* Projet secondaire : mini-carte, bien plus petite que les bandeaux */
+.also-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 34px 0 12px;
+}
+.miniproject {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 460px;
+  text-decoration: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 18px 12px 12px;
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.miniproject:hover { border-color: var(--accent); transform: translateY(-2px); }
+.miniproject-art {
+  flex-shrink: 0;
+  width: 56px; height: 56px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.miniproject-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.miniproject-text { display: flex; flex-direction: column; gap: 3px; }
+.miniproject-title {
+  font-family: var(--font-display);
+  font-size: 0.98rem; font-weight: 600; color: var(--heading);
+}
+.miniproject-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.4; }
 
 .feature-body { padding: 40px 40px; }
 .feature-top {
