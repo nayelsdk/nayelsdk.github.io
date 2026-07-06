@@ -273,27 +273,19 @@ strong { color: var(--heading); font-weight: 600; }
   flex-shrink: 0;
 }
 
-/* Vignette logo (fond blanc, marche pour tous les logos et les 2 thèmes).
-   Hauteur fixe + largeur qui s'adapte : les logos larges (Natixis, BPCE)
-   s'étalent, les carrés restent carrés → l'espace est bien rempli. */
+/* Vignette logo : toutes de la MÊME taille (carré fixe), fond blanc.
+   Les logos sont rognés/nettoyés en amont pour bien remplir le carré. */
 .entry-logo {
   flex-shrink: 0;
-  height: 48px;
-  min-width: 48px;
-  max-width: 110px;
+  width: 48px; height: 48px;
   border-radius: 10px;
   background: #fff;
   border: 1px solid var(--border);
-  display: inline-flex; align-items: center; justify-content: center;
-  padding: 5px 8px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 6px;
   overflow: hidden;
 }
-.entry-logo img {
-  height: 100%;
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
-}
+.entry-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
 /* Chevron qui pivote à l'ouverture */
 .chevron {
