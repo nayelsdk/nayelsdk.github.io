@@ -100,9 +100,24 @@ strong { color: var(--heading); font-weight: 600; }
 
 .topnav-links {
   display: flex;
+  align-items: center;
   gap: 24px;
   margin-left: auto;
 }
+
+/* Bouton « CV » dans la barre du haut (à côté de About) */
+.topnav-links .nav-cv {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 5px 11px;
+  transition: background 0.2s var(--ease);
+}
+.topnav-links .nav-cv:hover { color: var(--accent); background: var(--accent-soft); }
+.topnav-links .nav-cv svg { flex-shrink: 0; }
 
 .topnav-links a {
   font-family: var(--font-mono);
@@ -231,16 +246,28 @@ strong { color: var(--heading); font-weight: 600; }
 
 .socials {
   display: flex;
-  gap: 18px;
+  gap: 12px;
   list-style: none;
-  margin-top: 16px;
+  margin-top: 18px;
 }
 .socials a {
   color: var(--muted);
   display: inline-flex;
-  transition: color 0.2s var(--ease), transform 0.2s var(--ease);
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease),
+              background 0.2s var(--ease), transform 0.2s var(--ease);
 }
-.socials a:hover { color: var(--accent); transform: translateY(-3px); }
+.socials a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-3px);
+}
 .socials .hf { font-size: 22px; line-height: 1; } /* logo Hugging Face en emoji */
 
 .bio {
@@ -845,6 +872,29 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
   transition: background 0.2s var(--ease);
 }
 .btn:hover { background: var(--accent-soft); }
+
+/* Boutons rectangulaires « Get in touch » (LinkedIn / Email / GitHub) */
+.contact-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.cbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 13px 24px;
+  transition: background 0.2s var(--ease), transform 0.15s var(--ease);
+}
+.cbtn:hover { background: var(--accent-soft); transform: translateY(-2px); }
+.cbtn svg { flex-shrink: 0; }
 
 /* Section contact centrée */
 #contact { text-align: center; }
