@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=29">
+  <link rel="stylesheet" href="style.css?v=30">
 </head>
 <body id="top">
 
@@ -230,15 +230,24 @@
         </div>
       </div>
 
-      <!-- Projet secondaire (bien plus petit) : portfolio quant Pokémon -->
-      <p class="also-label">Also, an earlier side project</p>
-      <a class="miniproject" href="https://github.com/nayelsdk/Quantitative_Portfolio_Pokemon_Card" target="_blank" rel="noopener">
-        <span class="miniproject-art"><img src="assets/pokemon.jpg?v=1" alt="Pikachu in the style of Van Gogh"></span>
-        <span class="miniproject-text">
-          <span class="miniproject-title">Quantitative Portfolio · Pokémon Cards ↗</span>
-          <span class="miniproject-desc">A playful quant portfolio treating Pokémon cards as tradable assets (2023).</span>
-        </span>
-      </a>
+      <!-- Deux projets secondaires (plus petits) : chaque carte ouvre une fiche modale -->
+      <p class="also-label">A couple of smaller side projects</p>
+      <div class="miniprojects">
+        <div class="miniproject" role="button" tabindex="0" data-modal="danaModal" aria-label="Open the Dana36 project details">
+          <span class="miniproject-art"><img src="assets/dana36.jpg?v=1" alt="A veiled desert rider on a pale camel"></span>
+          <span class="miniproject-text">
+            <span class="miniproject-title">Dana36 · Detection &amp; Tracking</span>
+            <span class="miniproject-desc">Deep-learning object detection and tracking on the Dana36 dataset (2025).</span>
+          </span>
+        </div>
+        <div class="miniproject" role="button" tabindex="0" data-modal="pokemonModal" aria-label="Open the Pokémon Cards project details">
+          <span class="miniproject-art"><img src="assets/pokemon.jpg?v=1" alt="Pikachu in the style of Van Gogh"></span>
+          <span class="miniproject-text">
+            <span class="miniproject-title">Quant Portfolio · Pokémon Cards</span>
+            <span class="miniproject-desc">A playful quant portfolio treating Pokémon cards as tradable assets (2023).</span>
+          </span>
+        </div>
+      </div>
     </section>
 
     <!-- Fiche détaillée du projet Boreas (peinture + write-up) -->
@@ -317,6 +326,81 @@
           </ul>
           <div class="feature-links">
             <a class="rlink" href="assets/gas-volatility-extension.pdf" target="_blank" rel="noopener">Read the extension ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fiche détaillée du projet Dana36 (illustration + write-up + GitHub) -->
+    <div class="modal" id="danaModal" aria-hidden="true">
+      <div class="modal-overlay" data-close></div>
+      <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="danaModalTitle">
+        <button class="modal-close" type="button" data-close aria-label="Close">×</button>
+        <div class="modal-art">
+          <img src="assets/dana36.jpg?v=1" alt="A veiled desert rider on a pale camel under a deep blue sky">
+          <p class="modal-caption">
+            A veiled rider in indigo and crimson robes sits astride a pale camel, both
+            turned toward a vast desert sky crossed by distant birds.
+          </p>
+          <p class="modal-credit">Digital illustration</p>
+        </div>
+        <div class="modal-body">
+          <p class="card-label">Side project · 2025</p>
+          <h3 id="danaModalTitle" class="modal-title">Dana36 · Object Detection &amp; Tracking</h3>
+          <p>
+            A deep-learning study on the Dana36 dataset: exploratory data analysis, both
+            temporal and spatial, followed by a fine-tuned object detector and a
+            multi-object tracker.
+          </p>
+          <p>
+            The work covers model selection, data-augmentation experiments and tracking
+            across frames, evaluated on detection and tracking metrics.
+          </p>
+          <ul class="tags">
+            <li>YOLO</li>
+            <li>Object detection</li>
+            <li>Tracking</li>
+            <li>Fine-tuning</li>
+          </ul>
+          <div class="feature-links">
+            <a class="rlink" href="https://github.com/nayelsdk/Dana36-Project" target="_blank" rel="noopener">View on GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fiche détaillée du projet Pokémon Cards (illustration + write-up + GitHub) -->
+    <div class="modal" id="pokemonModal" aria-hidden="true">
+      <div class="modal-overlay" data-close></div>
+      <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="pokemonModalTitle">
+        <button class="modal-close" type="button" data-close aria-label="Close">×</button>
+        <div class="modal-art">
+          <img src="assets/pokemon.jpg?v=1" alt="Pikachu reimagined in the style of Van Gogh">
+          <p class="modal-caption">
+            Pikachu reimagined in swirling brushstrokes and cobalt blues, a wink to Van
+            Gogh's starry skies.
+          </p>
+          <p class="modal-credit">Digital illustration, after Van Gogh</p>
+        </div>
+        <div class="modal-body">
+          <p class="card-label">Side project · 2023</p>
+          <h3 id="pokemonModalTitle" class="modal-title">Quantitative Portfolio · Pokémon Cards</h3>
+          <p>
+            A playful first step into quantitative finance: I treat Pokémon trading cards
+            as tradable assets, collecting price histories to build and rebalance a small
+            quantitative portfolio.
+          </p>
+          <p>
+            The point was less the returns than the reflexes, position sizing,
+            diversification and tracking a portfolio through time on data I found fun.
+          </p>
+          <ul class="tags">
+            <li>Portfolio theory</li>
+            <li>Python</li>
+            <li>Data collection</li>
+          </ul>
+          <div class="feature-links">
+            <a class="rlink" href="https://github.com/nayelsdk/Quantitative_Portfolio_Pokemon_Card" target="_blank" rel="noopener">View on GitHub ↗</a>
           </div>
         </div>
       </div>

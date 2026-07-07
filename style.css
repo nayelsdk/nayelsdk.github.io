@@ -584,12 +584,20 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
   color: var(--muted);
   margin: 34px 0 12px;
 }
+/* Deux mini-projets côte à côte (déclencheurs de modale, pas des liens) */
+.miniprojects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 780px;
+}
 .miniproject {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 16px;
-  max-width: 460px;
+  width: 100%;
   text-decoration: none;
+  cursor: pointer;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -597,6 +605,13 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
   transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
 }
 .miniproject:hover { border-color: var(--accent); transform: translateY(-2px); }
+.miniproject:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+@media (max-width: 640px) {
+  .miniprojects { grid-template-columns: 1fr; }
+}
 .miniproject-art {
   flex-shrink: 0;
   width: 56px; height: 56px;
