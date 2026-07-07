@@ -423,11 +423,15 @@ strong { color: var(--heading); font-weight: 600; }
 
 /* Panneau déroulant : replié par défaut */
 .entry-panel {
-  max-height: 0;
+  display: grid;
+  grid-template-rows: 0fr;
   opacity: 0;
+  transition: grid-template-rows 0.3s var(--ease), opacity 0.25s var(--ease);
+}
+.entry-panel-inner {
   overflow: hidden;
-  padding: 0 20px;
-  transition: max-height 0.35s var(--ease), opacity 0.3s var(--ease), padding 0.35s var(--ease);
+  min-height: 0;
+  padding: 0 20px;                 /* horizontal seulement : le vertical vient des marges des enfants (sinon il resterait visible replié) */
 }
 .entry-panel p { font-size: 0.95rem; margin-bottom: 12px; }
 
@@ -445,9 +449,8 @@ strong { color: var(--heading); font-weight: 600; }
   background: var(--surface);
 }
 .entry.open .entry-panel {
-  max-height: 320px;
+  grid-template-rows: 1fr;
   opacity: 1;
-  padding: 0 20px 18px;
 }
 .entry.open .chevron {
   transform: rotate(180deg);
@@ -461,32 +464,28 @@ strong { color: var(--heading); font-weight: 600; }
    Calage : logo 48px + gap 14px = 62px -> la prose et la stack
    « pendent » sous le titre, pas sous le logo.
    ============================================================ */
-.entry.open .entry-panel.rich {
-  max-height: 500px;
-  padding: 2px 20px 20px;
-}
 /* Indentation suspendue : prose + stack alignées sous le titre */
-.entry.open .entry-panel.rich > p,
-.entry.open .entry-panel.rich > .tags {
+.entry-panel.rich .entry-panel-inner >p,
+.entry-panel.rich .entry-panel-inner >.tags {
   margin-left: 62px;
   padding-left: 20px;
   max-width: 62ch;
 }
 /* Prose : interligne plus aéré, couleur de corps, pas d'orphelines */
-.entry.open .entry-panel.rich > p {
+.entry-panel.rich .entry-panel-inner >p {
   position: relative;
   font-family: var(--font-body);
   font-size: 0.95rem;
   line-height: 1.72;
   color: var(--text);
-  margin-top: 0;
+  margin-top: 6px;
   margin-bottom: 16px;
   text-wrap: pretty;
 }
 /* Le seul accent : un filet ambre de 1px en marge, allumé en haut
    puis estompé vers le bas (dégradé). Repli couleur pleine si pas
    de color-mix. Rappelle le soulignement ambre des .entry-link. */
-.entry.open .entry-panel.rich > p::before {
+.entry-panel.rich .entry-panel-inner >p::before {
   content: "";
   position: absolute;
   left: 0; top: 0.15em; bottom: 0;
@@ -501,17 +500,18 @@ strong { color: var(--heading); font-weight: 600; }
   );
 }
 /* Stack : réutilise .tags ; un filet horizontal fin la sépare de la prose */
-.entry.open .entry-panel.rich > .tags.stack {
+.entry-panel.rich .entry-panel-inner >.tags.stack {
   padding-top: 14px;
+  margin-bottom: 20px;             /* bas du panneau (le wrapper n'a plus de padding vertical) */
   border-top: 1px solid var(--border);
 }
 @media (max-width: 640px) {
-  .entry.open .entry-panel.rich { max-height: 700px; padding: 2px 16px 18px; }
-  .entry.open .entry-panel.rich > p,
-  .entry.open .entry-panel.rich > .tags {
+  .entry-panel-inner { padding: 0 16px; }
+  .entry-panel.rich .entry-panel-inner >p,
+  .entry-panel.rich .entry-panel-inner >.tags {
     margin-left: 0; padding-left: 16px; max-width: none;
   }
-  .entry.open .entry-panel.rich > p { line-height: 1.65; }
+  .entry-panel.rich .entry-panel-inner >p { line-height: 1.65; }
 }
 
 /* ===================== CARTES PROJETS ===================== */
