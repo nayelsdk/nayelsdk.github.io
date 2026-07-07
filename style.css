@@ -584,12 +584,12 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
   color: var(--muted);
   margin: 34px 0 12px;
 }
-/* Deux mini-projets côte à côte (déclencheurs de modale, pas des liens) */
+/* Deux mini-projets côte à côte (déclencheurs de modale, pas des liens).
+   Même largeur que les bannières de projet -> séparation au centre. */
 .miniprojects {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  max-width: 780px;
+  gap: 20px;
 }
 .miniproject {
   display: flex;
