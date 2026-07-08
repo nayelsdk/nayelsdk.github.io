@@ -630,6 +630,7 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
   gap: 20px;
 }
 .miniproject {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -642,7 +643,17 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
   padding: 12px 18px 12px 12px;
   transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
 }
+.miniproject::after {                 /* indice « ouvre une fiche » (visible aussi sur tactile) */
+  content: "⤢";
+  position: absolute;
+  top: 9px; right: 11px;
+  font-size: 12px;
+  color: var(--muted);
+  opacity: 0.55;
+  transition: color 0.2s var(--ease), opacity 0.2s var(--ease);
+}
 .miniproject:hover { border-color: var(--accent); transform: translateY(-2px); }
+.miniproject:hover::after { color: var(--accent); opacity: 1; }
 .miniproject:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
@@ -828,6 +839,15 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
 .modal.open .modal-box { animation: modalPop 0.28s var(--ease); }
 .modal-body, .modal-art { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
 a, button, [role="button"], .entry-head, .feature, .miniproject { -webkit-tap-highlight-color: transparent; }
+
+/* Tactile (pas de survol) : les liens gardent leur soulignement visible et les
+   indices « ouvrable » restent affichés -> on voit ce qui est cliquable sur mobile. */
+@media (hover: none) {
+  .bio a, .entry-link, .rlink { background-size: 100% 1.5px; }
+  .feature-expand { opacity: 1; }
+}
+/* Retour tactile au tap sur les cartes cliquables (fluidité) */
+.feature:active, .miniproject:active { transform: scale(0.985); }
 
 /* Mobile : la modale devient un « bottom sheet » (poignée + glisser pour fermer) */
 @media (max-width: 720px) {
