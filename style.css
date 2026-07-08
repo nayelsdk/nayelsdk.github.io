@@ -505,33 +505,30 @@ strong { color: var(--heading); font-weight: 600; }
   margin-bottom: 20px;             /* bas du panneau (le wrapper n'a plus de padding vertical) */
   border-top: 1px solid var(--border);
 }
-/* Ligne d'affiliation (ex. ENSAE -> IP Paris) : logo + note, alignée sous le titre */
-.entry-panel.rich .entry-panel-inner >.edu-affil {
-  margin-left: 62px;
-  padding-left: 20px;
-  margin-bottom: 20px;
-  max-width: 62ch;
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  font-size: 0.82rem;
-  line-height: 1.5;
+/* Sous-titre diplôme dans l'en-tête (entrées Éducation) */
+.entry-degree {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
   color: var(--muted);
+  margin-top: 4px;
 }
-.edu-affil img {
-  flex-shrink: 0;
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  background: #F3F5F8;
-  border: 1px solid var(--border);
-  padding: 3px;
-  object-fit: contain;
+/* ENSAE : logo IP Paris empilé au-dessus du logo ENSAE dans la même vignette */
+.entry-logo--duo {
+  height: auto;
+  flex-direction: column;
+  gap: 5px;
+  padding: 7px 4px;
 }
+.entry-logo--duo img { width: auto; }
+.entry-logo--duo .ipp { max-height: 20px; }
+.entry-logo--duo .ensae { max-height: 32px; }
 @media (max-width: 640px) {
   .entry-panel-inner { padding: 0 16px; }
   .entry-panel.rich .entry-panel-inner >p,
-  .entry-panel.rich .entry-panel-inner >.tags,
-  .entry-panel.rich .entry-panel-inner >.edu-affil {
+  .entry-panel.rich .entry-panel-inner >.tags {
     margin-left: 0; padding-left: 16px; max-width: none;
   }
   .entry-panel.rich .entry-panel-inner >p { line-height: 1.65; }
