@@ -480,6 +480,7 @@ strong { color: var(--heading); font-weight: 600; }
   color: var(--text);
   margin-top: 6px;
   margin-bottom: 16px;
+  text-align: justify;
   text-wrap: pretty;
 }
 /* Le seul accent : un filet ambre de 1px en marge, allumé en haut
