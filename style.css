@@ -469,7 +469,7 @@ strong { color: var(--heading); font-weight: 600; }
 .entry-panel.rich .entry-panel-inner >.tags {
   margin-left: 62px;
   padding-left: 20px;
-  max-width: 62ch;
+  padding-right: 20px;      /* la prose remplit la largeur du panneau au lieu de couper à mi-page */
 }
 /* Prose : interligne plus aéré, couleur de corps, pas d'orphelines */
 .entry-panel.rich .entry-panel-inner >p {
