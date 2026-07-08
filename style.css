@@ -392,11 +392,11 @@ strong { color: var(--heading); font-weight: 600; }
   flex-shrink: 0;
   width: 48px; height: 48px;
   border-radius: 10px;
-  background: #F3F5F8;                        /* gris très clair « enfoncé » plutôt que blanc pur */
-  box-shadow: inset 0 0 0 1px rgba(10, 25, 47, 0.06);
+  background: #CBD4E2;                        /* gris-bleu doux : se fond mieux avec le rectangle sombre qu'un blanc pur */
+  box-shadow: inset 0 0 0 1px rgba(10, 25, 47, 0.05);
   border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
-  padding: 4px;                              /* réduit pour que le logo remplisse plus */
+  padding: 5px;                              /* les logos sont rognés serré : petit retrait pour ne pas toucher les coins */
   overflow: hidden;
 }
 [data-theme="light"] .entry-logo { background: #FBFCFE; }
