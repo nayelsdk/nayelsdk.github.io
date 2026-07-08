@@ -820,13 +820,46 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
 .modal-box--reverse .modal-body { order: 1; }
 .modal-box--reverse .modal-close { right: auto; left: 12px; }
 
+/* Ouverture animée + le scroll ne « déborde » pas sur la page */
+@keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modalPop { from { opacity: 0; transform: translateY(8px) scale(0.99); } to { opacity: 1; transform: none; } }
+@keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.modal.open .modal-overlay { animation: modalFade 0.25s var(--ease); }
+.modal.open .modal-box { animation: modalPop 0.28s var(--ease); }
+.modal-body, .modal-art { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+a, button, [role="button"], .entry-head, .feature, .miniproject { -webkit-tap-highlight-color: transparent; }
+
+/* Mobile : la modale devient un « bottom sheet » (poignée + glisser pour fermer) */
 @media (max-width: 720px) {
-  .modal-box, .modal-box--reverse { grid-template-columns: 1fr; max-height: 90vh; }
-  .modal-art { max-height: 44vh; }
+  .modal { align-items: flex-end; padding: 0; }
+  .modal-box, .modal-box--reverse {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);   /* le corps prend la place restante et DÉFILE */
+    width: 100%;
+    max-height: 92vh;
+    border-radius: 20px 20px 0 0;
+    padding-top: 24px;                 /* bande d'en-tête pour la poignée + la croix */
+  }
+  .modal-body { min-height: 0; }       /* autorise le corps à rétrécir et donc à défiler */
+  .modal.open .modal-box { animation: sheetUp 0.3s var(--ease); }
+  .modal-box::before {                 /* poignée de glissement */
+    content: "";
+    position: absolute;
+    top: 10px; left: 50%; transform: translateX(-50%);
+    width: 42px; height: 4px; border-radius: 999px;
+    background: var(--muted); opacity: 0.5; z-index: 3;
+  }
   .modal-box--reverse .modal-art { order: 0; }
   .modal-box--reverse .modal-body { order: 0; }
-  .modal-box--reverse .modal-close { left: auto; right: 12px; }
-  .modal-body { padding: 26px 24px; }
+  .modal-art { max-height: 40vh; }
+  .modal-body { padding: 20px 22px 30px; }
+  .modal-close, .modal-box--reverse .modal-close {
+    top: 14px; right: 14px; left: auto;
+    width: 40px; height: 40px;
+    background: var(--surface-2);
+    border-radius: 10px;
+    font-size: 1.6rem;
+  }
 }
 
 /* ===================== TAGS & PILLS ===================== */

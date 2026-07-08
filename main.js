@@ -95,6 +95,26 @@ sections.forEach((section) => spyObserver.observe(section));
 // 6) Modale (fiche détaillée du projet Boreas)
 // ---------------------------------------------------------------------
 let modalLastFocus = null;
+let savedScrollY = 0;
+
+// Verrou de scroll robuste (iOS compris) : on fige le body et on restaure
+// la position exacte à la fermeture, pour que le fond ne bouge pas.
+function lockScroll() {
+  savedScrollY = window.scrollY || window.pageYOffset || 0;
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${savedScrollY}px`;
+  document.body.style.left = "0";
+  document.body.style.right = "0";
+  document.body.style.width = "100%";
+}
+function unlockScroll() {
+  document.body.style.position = "";
+  document.body.style.top = "";
+  document.body.style.left = "";
+  document.body.style.right = "";
+  document.body.style.width = "";
+  window.scrollTo(0, savedScrollY);
+}
 
 document.querySelectorAll("[data-modal]").forEach((trigger) => {
   const modal = document.getElementById(trigger.getAttribute("data-modal"));
@@ -103,9 +123,9 @@ document.querySelectorAll("[data-modal]").forEach((trigger) => {
     modalLastFocus = trigger;
     modal.classList.add("open");
     modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";      // bloque le scroll de fond
+    lockScroll();
     const closeBtn = modal.querySelector(".modal-close");
-    if (closeBtn) closeBtn.focus();
+    if (closeBtn) closeBtn.focus({ preventScroll: true });
   };
   trigger.addEventListener("click", openModal);
   trigger.addEventListener("keydown", (e) => {
@@ -114,11 +134,13 @@ document.querySelectorAll("[data-modal]").forEach((trigger) => {
 });
 
 document.querySelectorAll(".modal").forEach((modal) => {
+  const box = modal.querySelector(".modal-box");
   const closeModal = () => {
     modal.classList.remove("open");
     modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-    if (modalLastFocus) modalLastFocus.focus();   // rend le focus au déclencheur
+    if (box) { box.style.transform = ""; box.style.transition = ""; }
+    unlockScroll();
+    if (modalLastFocus) modalLastFocus.focus({ preventScroll: true });
   };
   // Fermeture : bouton ×, clic sur le fond
   modal.querySelectorAll("[data-close]").forEach((el) => el.addEventListener("click", closeModal));
@@ -126,4 +148,32 @@ document.querySelectorAll(".modal").forEach((modal) => {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
   });
+
+  // Mobile : glisser la modale vers le bas pour la fermer (geste « bottom sheet »)
+  if (box) {
+    let startY = 0, dy = 0, dragging = false;
+    box.addEventListener("touchstart", (e) => {
+      if (window.innerWidth > 720) return;
+      startY = e.touches[0].clientY; dy = 0; dragging = true;
+      box.style.transition = "none";
+    }, { passive: true });
+    box.addEventListener("touchmove", (e) => {
+      if (!dragging) return;
+      dy = e.touches[0].clientY - startY;
+      const scroller = e.target.closest(".modal-body, .modal-art");
+      const atTop = !scroller || scroller.scrollTop <= 0;
+      if (dy > 0 && atTop) {
+        box.style.transform = `translateY(${dy}px)`;
+        if (e.cancelable) e.preventDefault();   // on glisse la feuille au lieu de scroller
+      } else {
+        box.style.transform = "";
+      }
+    }, { passive: false });
+    box.addEventListener("touchend", () => {
+      if (!dragging) return; dragging = false;
+      box.style.transition = "transform 0.28s cubic-bezier(0.4, 0, 0.2, 1)";
+      if (dy > 110) closeModal();
+      else box.style.transform = "";
+    });
+  }
 });
