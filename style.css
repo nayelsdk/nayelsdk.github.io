@@ -515,16 +515,6 @@ strong { color: var(--heading); font-weight: 600; }
   color: var(--muted);
   margin-top: 4px;
 }
-/* ENSAE : logo IP Paris empilé au-dessus du logo ENSAE dans la même vignette */
-.entry-logo--duo {
-  height: auto;
-  flex-direction: column;
-  gap: 5px;
-  padding: 7px 4px;
-}
-.entry-logo--duo img { width: auto; }
-.entry-logo--duo .ipp { max-height: 20px; }
-.entry-logo--duo .ensae { max-height: 32px; }
 @media (max-width: 640px) {
   .entry-panel-inner { padding: 0 16px; }
   .entry-panel.rich .entry-panel-inner >p,
