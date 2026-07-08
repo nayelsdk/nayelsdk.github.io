@@ -353,7 +353,7 @@ strong { color: var(--heading); font-weight: 600; }
   font-weight: 600;
   color: var(--heading);
 }
-.entry-title .at { color: var(--accent); font-weight: 500; }
+.entry-title .at { color: var(--muted); font-weight: 500; }
 
 /* Nom d'entreprise / école cliquable : au survol, un trait fin d'accent
    grandit depuis la gauche + la couleur passe à l'ambre. Plus fin/élégant
@@ -392,7 +392,7 @@ strong { color: var(--heading); font-weight: 600; }
   flex-shrink: 0;
   width: 48px; height: 48px;
   border-radius: 10px;
-  background: #CBD4E2;                        /* gris-bleu doux : se fond mieux avec le rectangle sombre qu'un blanc pur */
+  background: #FBFCFE;                        /* blanc doux (préféré au gris-bleu) */
   box-shadow: inset 0 0 0 1px rgba(10, 25, 47, 0.05);
   border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
