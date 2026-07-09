@@ -82,9 +82,9 @@
           <p>
             After a gap year shaped by quant and AI internships, I am gravitating
             toward finance, and <strong>energy &amp; commodities</strong> in
-            particular. That is what led me to build <strong>Boreas</strong>, a
+            particular. That is what led me to build <a href="https://huggingface.co/spaces/nayelsdk1/boreas-weather-derivatives" target="_blank" rel="noopener" title="Try the app"><strong>Boreas</strong></a>, a
             complete pricing app for weather derivatives, built on research I have run
-            independently since January 2026. <a href="#projects">More on the project ↓</a>
+            independently since January 2026. <a href="https://huggingface.co/spaces/nayelsdk1/boreas-weather-derivatives" target="_blank" rel="noopener">Try the app here ↗</a> · <a href="#projects">more on the project ↓</a>
           </p>
         </div>
         <ul class="socials">
@@ -96,11 +96,6 @@
           <li>
             <a href="https://www.linkedin.com/in/nayel-benabdesadok/" target="_blank" rel="noopener" aria-label="LinkedIn">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
-            </a>
-          </li>
-          <li>
-            <a href="https://huggingface.co/nayelsdk1" target="_blank" rel="noopener" aria-label="Hugging Face" title="Hugging Face">
-              <span class="hf">🤗</span>
             </a>
           </li>
           <li>
@@ -324,7 +319,7 @@
             Schwartz–Smith two-factor state-space model, fitted by a Kalman filter.
           </p>
           <p>
-            A weather-coupled Student-t GARCH then feeds winter temperature anomalies into
+            A weather-coupled GARCH(1,1) then feeds winter temperature anomalies into
             the volatility dynamics. The temperature signal is genuine on historical data,
             but the edge largely evaporates out of sample. Skill measured on history rarely
             survives on live markets.
