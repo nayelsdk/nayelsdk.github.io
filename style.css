@@ -843,7 +843,7 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
   color: var(--heading);
   margin: 6px 0 16px;
 }
-.modal-body p { margin-bottom: 16px; }
+.modal-body p { margin-bottom: 16px; text-align: justify; }
 .modal-body .tags { margin-bottom: 20px; }
 .modal-close {
   position: absolute;

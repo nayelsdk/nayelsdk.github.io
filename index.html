@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=45">
+  <link rel="stylesheet" href="style.css?v=46">
 </head>
 <body id="top">
 
@@ -196,7 +196,7 @@
         </div>
         <div class="feature-body">
           <p class="card-label">Part 1 · Weather-derivative pricing</p>
-          <h3 class="feature-title">Boreas · Weather Derivatives</h3>
+          <h3 class="feature-title">Temperature Models for Weather Derivatives &amp; Commodity Trading</h3>
           <p class="card-desc">
             Stochastic and machine-learning temperature models for pricing weather
             derivatives, wrapped in Boreas, an end-to-end trading dashboard.
@@ -204,9 +204,9 @@
           <ul class="tags">
             <li>Ornstein–Uhlenbeck</li>
             <li>Ridge / RF / XGBoost</li>
-            <li>HDD options</li>
+            <li>HDD/CDD options</li>
             <li>Monte-Carlo</li>
-            <li>Streamlit</li>
+            <li>Financial Mathematics</li>
           </ul>
           <p class="feature-cue">View the painting &amp; full write-up ↗</p>
         </div>
@@ -216,7 +216,7 @@
       <div class="feature feature--reverse" role="button" tabindex="0" data-modal="gasModal" aria-label="Open the natural-gas extension details">
         <div class="feature-body">
           <p class="card-label">Part 2 · Extension</p>
-          <h3 class="feature-title">From Winter Temperatures to Natural-Gas Volatility</h3>
+          <h3 class="feature-title">Winter Temperatures as a Driver of Natural-Gas Volatility</h3>
           <p class="card-desc">
             A follow-up that links winter temperature anomalies to Henry Hub natural gas
             volatility, through a Schwartz–Smith state-space model and a weather-coupled
@@ -225,8 +225,8 @@
           <ul class="tags">
             <li>Schwartz–Smith</li>
             <li>Kalman filter</li>
-            <li>GARCH</li>
-            <li>Henry Hub</li>
+            <li>GARCH volatility</li>
+            <li>Weather-Coupled GARCH</li>
           </ul>
           <p class="feature-cue">View the painting &amp; full write-up ↗</p>
         </div>
@@ -271,23 +271,28 @@
         </div>
         <div class="modal-body">
           <p class="card-label">Part 1 · Weather-derivative pricing</p>
-          <h3 id="boreasModalTitle" class="modal-title">Boreas · Weather Derivatives</h3>
+          <h3 id="boreasModalTitle" class="modal-title">Temperature Models for Weather Derivatives &amp; Commodity Trading</h3>
           <p>
-            I model daily temperature for the US cities on the CME weather market with an
-            Ornstein–Uhlenbeck process and machine-learning forecasters (Ridge, Random
-            Forest, XGBoost), trained by nested cross-validation on seventy years of data.
+            I model daily temperature for the US cities of the CME weather market,
+            combining an Ornstein–Uhlenbeck mean-reverting process with machine-learning
+            forecasters (Ridge, Random Forest, XGBoost), trained by nested cross-validation
+            on seventy years of data.
           </p>
           <p>
-            The models then price Heating Degree Day call options, backtested over five
-            winters (2020 to 2025). Boreas is the end-to-end dashboard that turns these
+            These models then price Heating and Cooling Degree Day (HDD/CDD) options, by
+            Monte-Carlo simulation and closed-form formulas, back-tested over five winters
+            from 2020 to 2025.
+          </p>
+          <p>
+            Boreas ties it together: an end-to-end interactive dashboard that turns the
             models into live prices for commodity traders.
           </p>
           <ul class="tags">
             <li>Ornstein–Uhlenbeck</li>
             <li>Ridge / RF / XGBoost</li>
-            <li>HDD options</li>
+            <li>HDD/CDD options</li>
             <li>Monte-Carlo</li>
-            <li>Streamlit</li>
+            <li>Financial Mathematics</li>
           </ul>
           <div class="feature-links">
             <a class="rlink" href="https://huggingface.co/spaces/nayelsdk1/boreas-weather-derivatives" target="_blank" rel="noopener">Open the app ↗</a>
@@ -313,23 +318,22 @@
         </div>
         <div class="modal-body">
           <p class="card-label">Part 2 · Extension</p>
-          <h3 id="gasModalTitle" class="modal-title">From Winter Temperatures to Natural-Gas Volatility</h3>
+          <h3 id="gasModalTitle" class="modal-title">Winter Temperatures as a Driver of Natural-Gas Volatility</h3>
           <p>
-            A follow-up study that links winter temperature anomalies to the volatility
-            of Henry Hub natural gas. I fit a Schwartz–Smith two-factor state-space model
-            with a Kalman filter, then a weather-coupled Student-t GARCH that feeds
-            temperature anomalies into the volatility dynamics.
+            I extract the short- and long-term factors of Henry Hub natural gas with a
+            Schwartz–Smith two-factor state-space model, fitted by a Kalman filter.
           </p>
           <p>
-            The honest takeaway: the temperature signal is genuine on historical data,
-            but the edge largely evaporates on new data. Skill measured on history
-            rarely survives on live markets.
+            A weather-coupled Student-t GARCH then feeds winter temperature anomalies into
+            the volatility dynamics. The temperature signal is genuine on historical data,
+            but the edge largely evaporates out of sample. Skill measured on history rarely
+            survives on live markets.
           </p>
           <ul class="tags">
             <li>Schwartz–Smith</li>
             <li>Kalman filter</li>
-            <li>GARCH</li>
-            <li>Henry Hub</li>
+            <li>GARCH volatility</li>
+            <li>Weather-Coupled GARCH</li>
           </ul>
           <div class="feature-links">
             <a class="rlink" href="assets/gas-volatility-extension.pdf?v=2" target="_blank" rel="noopener">Read the extension ↗</a>
