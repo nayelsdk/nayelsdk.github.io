@@ -60,13 +60,22 @@ body {
 /* Halo d'ambiance en haut de page */
 .bg-glow {
   position: fixed;
-  top: -200px; left: 50%;
+  top: -260px; left: 50%;
+  width: 1100px; height: 760px;
   transform: translateX(-50%);
-  width: 900px; height: 600px;
-  background: radial-gradient(circle, var(--accent-soft), transparent 60%);
+  background:
+    radial-gradient(46% 56% at 40% 42%, var(--accent-soft), transparent 70%),
+    radial-gradient(40% 48% at 63% 58%, var(--accent-soft), transparent 72%);
+  filter: blur(12px);
   pointer-events: none;
   z-index: 0;
-  opacity: 0.7;
+  opacity: 0.9;
+  animation: auroraDrift 30s ease-in-out infinite alternate;
+}
+@keyframes auroraDrift {
+  0%   { transform: translateX(-52%) translateY(0)     scale(1);    }
+  50%  { transform: translateX(-47%) translateY(26px)  scale(1.09); }
+  100% { transform: translateX(-53%) translateY(-8px)  scale(1.03); }
 }
 
 strong { color: var(--heading); font-weight: 600; }
@@ -180,6 +189,8 @@ strong { color: var(--heading); font-weight: 600; }
 /* ===================== HERO / ABOUT ===================== */
 /* Photo à gauche, texte "about" en face à droite ; occupe l'écran. */
 .hero {
+  position: relative;
+  z-index: 0;
   display: grid;
   grid-template-columns: minmax(240px, 300px) minmax(0, 640px);
   gap: 60px;
@@ -187,6 +198,31 @@ strong { color: var(--heading); font-weight: 600; }
   min-height: calc(100vh - 128px);   /* remplit l'écran sous la nav */
   padding: 0 0 32px;
   margin-bottom: 24px;
+}
+/* Grain très fin dans le hero (texture, pas de lib) */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+}
+/* Dégradé ambre qui respire lentement derrière le texte du hero */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: -8% -6% -8% -12%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(52% 56% at 30% 36%, var(--accent-soft), transparent 74%);
+  opacity: 0.55;
+  animation: heroSheen 34s ease-in-out infinite alternate;
+}
+@keyframes heroSheen {
+  0%   { transform: translate(0, 0)         scale(1);    opacity: 0.4;  }
+  100% { transform: translate(34px, -20px)  scale(1.16); opacity: 0.66; }
 }
 
 .hero-photo img {
