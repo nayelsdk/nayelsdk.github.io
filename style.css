@@ -744,7 +744,6 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
 /* Phrase d'intro sous le titre de section */
 .section-intro {
   color: var(--muted);
-  max-width: 620px;
   margin: -18px 0 28px;
 }
 
