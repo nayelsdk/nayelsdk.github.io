@@ -236,11 +236,11 @@
       <!-- Deux projets secondaires (plus petits) : chaque carte ouvre une fiche modale -->
       <p class="also-label">A couple of smaller side projects</p>
       <div class="miniprojects">
-        <div class="miniproject" role="button" tabindex="0" data-modal="danaModal" aria-label="Open the Dana36 project details">
+        <div class="miniproject" role="button" tabindex="0" data-modal="danaModal" aria-label="Open the video surveillance project details">
           <span class="miniproject-art"><img src="assets/dana36.jpg?v=3" alt="Danseuse arabe aux étoiles by Étienne Dinet"></span>
           <span class="miniproject-text">
-            <span class="miniproject-title">Dana36 · Detection &amp; Tracking</span>
-            <span class="miniproject-desc">Deep-learning object detection and tracking on the Dana36 dataset (2025).</span>
+            <span class="miniproject-title">Object Detection &amp; Tracking</span>
+            <span class="miniproject-desc">Deep-learning detection and tracking of people and vehicles for video surveillance (2025).</span>
           </span>
         </div>
         <div class="miniproject" role="button" tabindex="0" data-modal="pokemonModal" aria-label="Open the Pokémon Cards project details">
@@ -341,7 +341,7 @@
       </div>
     </div>
 
-    <!-- Fiche détaillée du projet Dana36 (illustration + write-up + GitHub) -->
+    <!-- Fiche détaillée du projet vidéo-surveillance (illustration + write-up + GitHub) -->
     <div class="modal" id="danaModal" aria-hidden="true">
       <div class="modal-overlay" data-close></div>
       <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="danaModalTitle">
@@ -356,24 +356,29 @@
         </div>
         <div class="modal-body">
           <p class="card-label">Side project · 2025</p>
-          <h3 id="danaModalTitle" class="modal-title">Dana36 · Object Detection &amp; Tracking</h3>
+          <h3 id="danaModalTitle" class="modal-title">Object Detection &amp; Tracking for Video Surveillance</h3>
           <p>
-            A deep-learning study on the Dana36 dataset: exploratory data analysis, both
-            temporal and spatial, followed by a fine-tuned object detector and a
-            multi-object tracker.
+            A deep-learning pipeline that detects and tracks people and vehicles across 36
+            fixed surveillance cameras, indoor and outdoor. I fine-tuned a YOLOv8 detector,
+            chosen over Faster R-CNN for its speed and accuracy under limited GPU, and paired
+            it with a lightweight IoU-matching tracker that keeps a persistent ID for each
+            subject across frames.
           </p>
           <p>
-            The work covers model selection, data-augmentation experiments and tracking
-            across frames, evaluated on detection and tracking metrics.
+            Beyond raw accuracy, the focus is robustness: I stress-tested several fine-tuning
+            strategies under adverse conditions such as rain, fog, darkness and harsh
+            brightness, applied on the fly with Albumentations and evaluated on held-out
+            cameras.
           </p>
           <ul class="tags">
-            <li>YOLO</li>
+            <li>YOLOv8</li>
             <li>Object detection</li>
-            <li>Tracking</li>
-            <li>Fine-tuning</li>
+            <li>IoU tracking</li>
+            <li>PyTorch</li>
+            <li>Albumentations</li>
           </ul>
           <div class="feature-links">
-            <a class="rlink" href="https://github.com/nayelsdk/Dana36-Project" target="_blank" rel="noopener">View on GitHub ↗</a>
+            <a class="rlink" href="https://github.com/nayelsdk/Deep_Learning_Applied_to_Video_Analytics" target="_blank" rel="noopener">View on GitHub ↗</a>
           </div>
         </div>
       </div>
@@ -396,10 +401,11 @@
           <p class="card-label">Side project · 2023</p>
           <h3 id="pokemonModalTitle" class="modal-title">Quantitative Portfolio · Pokémon Cards</h3>
           <p>
-            A playful first step into quantitative finance: I treat Pokémon trading cards
-            as tradable assets, scraping years of price history from TCGPlayer and running
-            the full pipeline from data analysis to a Markowitz portfolio optimisation, all
-            presented in a Streamlit dashboard. Built at ENSAE, for the fun of applying real
+            A playful first step into quantitative finance: I treat Pokémon trading cards as
+            tradable assets, scraping the price history of thousands of cards from TCGPlayer,
+            then running the full data-science pipeline from analysis to a Markowitz
+            portfolio optimisation with binary weights, all served in an interactive Streamlit
+            dashboard. Built at ENSAE, for educational purposes and the fun of applying real
             portfolio theory to data I enjoyed.
           </p>
           <ul class="tags">
