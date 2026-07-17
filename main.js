@@ -108,12 +108,18 @@ function lockScroll() {
   document.body.style.width = "100%";
 }
 function unlockScroll() {
+  // On coupe le scroll « smooth » le temps de restaurer la position, sinon la
+  // page se « redéroule » du haut jusqu'à l'ancienne position à la fermeture.
+  const html = document.documentElement;
+  const prevBehavior = html.style.scrollBehavior;
+  html.style.scrollBehavior = "auto";
   document.body.style.position = "";
   document.body.style.top = "";
   document.body.style.left = "";
   document.body.style.right = "";
   document.body.style.width = "";
   window.scrollTo(0, savedScrollY);
+  html.style.scrollBehavior = prevBehavior;
 }
 
 document.querySelectorAll("[data-modal]").forEach((trigger) => {
