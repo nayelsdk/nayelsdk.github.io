@@ -866,12 +866,9 @@ a.card:hover .arrow { transform: translate(3px, -3px); }
 .modal-box--reverse .modal-body { order: 1; }
 .modal-box--reverse .modal-close { right: auto; left: 12px; }
 
-/* Ouverture animée + le scroll ne « déborde » pas sur la page */
+/* Fond qui se fond doucement (pas d'animation d'ouverture de la boîte) */
 @keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
-@keyframes modalPop { from { opacity: 0; transform: translateY(8px) scale(0.99); } to { opacity: 1; transform: none; } }
-@keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-.modal.open .modal-overlay { animation: modalFade 0.25s var(--ease); }
-.modal.open .modal-box { animation: modalPop 0.28s var(--ease); }
+.modal.open .modal-overlay { animation: modalFade 0.2s var(--ease); }
 .modal-body, .modal-art { overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
 a, button, [role="button"], .entry-head, .feature, .miniproject { -webkit-tap-highlight-color: transparent; }
 
@@ -896,7 +893,6 @@ a, button, [role="button"], .entry-head, .feature, .miniproject { -webkit-tap-hi
     padding-top: 24px;                 /* bande d'en-tête pour la poignée + la croix */
   }
   .modal-body { min-height: 0; }       /* autorise le corps à rétrécir et donc à défiler */
-  .modal.open .modal-box { animation: sheetUp 0.3s var(--ease); }
   .modal-box::before {                 /* poignée de glissement */
     content: "";
     position: absolute;
